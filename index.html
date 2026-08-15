@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promitie Arepas — Hechas con Amor de Hogar</title>
+  <meta name="description" content="Arepas tradicionales colombianas hechas con maíz 100% seleccionado para disfrutar en casa y optimizar tu negocio. Bogotá, Colombia.">
+  
+  <!-- Estilos y Fuentes -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Iconos (FontAwesome o similares via CDN para diseño premium) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-link" id="nav-logo">
+        <img src="LOGO.png" alt="Promitie Arepas Logo">
+      </a>
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="#esencia" class="nav-link">Esencia</a></li>
+          <li><a href="#maiz-mesa" class="nav-link">Proceso</a></li>
+          <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+          <li><a href="#recetario" class="nav-link">Recetas</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="#" id="open-cart-btn" class="btn btn-secondary" style="padding: 0.6rem 1.2rem; border-radius: var(--radius-pill);">
+          <i class="fa-solid fa-basket-shopping"></i> <span id="cart-count">0</span>
+        </a>
+        <a href="#contacto" class="btn btn-primary desktop-only" style="padding: 0.6rem 1.5rem;">Pedir al detal</a>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <!-- Mobile Nav Overlay -->
+      <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">&times;</button>
+        <ul class="mobile-nav-menu">
+          <li><a href="#inicio" class="mobile-nav-link">Inicio</a></li>
+          <li><a href="#esencia" class="mobile-nav-link">Esencia</a></li>
+          <li><a href="#maiz-mesa" class="mobile-nav-link">Proceso</a></li>
+          <li><a href="#catalogo" class="mobile-nav-link">Catálogo</a></li>
+          <li><a href="#recetario" class="mobile-nav-link">Recetas</a></li>
+          <li><a href="#contacto" class="mobile-nav-link">Contacto</a></li>
+        </ul>
+        <a href="#contacto" class="btn btn-primary mobile-nav-cta">Pedir al detal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="inicio" class="hero">
+    <!-- Loop de Video de Fondo (Desktop) -->
+    <video autoplay muted loop playsinline class="hero-video-bg hero-video-desktop">
+      <source src="promi.webm" type="video/webm">
+      Tu navegador no soporta videos HTML5.
+    </video>
+    <!-- Loop de Video de Fondo (Mobile Vertical) -->
+    <video autoplay muted loop playsinline class="hero-video-bg hero-video-mobile">
+      <source src="vertical promitie.webm" type="video/webm">
+      Tu navegador no soporta videos HTML5.
+    </video>
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <span class="handwritten" style="color: var(--color-gold); font-size: 2.2rem;">Hechas con Amor de Hogar</span>
+      <h1>Arepas tradicionales colombianas para <span class="signature-underline">cada mesa</span> y cada negocio</h1>
+      <p>Sabores regionales elaborados para un desayuno memorable y formatos prácticos para restaurantes, cafeterías, hoteles y distribuidores.</p>
+      
+      <div class="hero-ctas">
+        <a href="#catalogo" class="btn btn-primary">Quiero probar las arepas</a>
+        <a href="#catalogo" id="hero-b2b-trigger" class="btn btn-outline-white">Tengo un negocio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTRA ESENCIA -->
+  <section id="esencia" class="essence-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="caption">DESDE 2004</span>
+        <h2>Alimentando a las familias y negocios de Colombia</h2>
+        <p>Una tradición bogotana fundada bajo el compromiso del sabor hogareño y la inocuidad garantizada en cada producto.</p>
+      </div>
+      
+      <div class="grid-3">
+        <div class="essence-card">
+          <div class="icon" style="color: var(--color-red);"><i class="fa-solid fa-seedling"></i></div>
+          <h3>Tradición e Inocuidad</h3>
+          <p>Maíz 100% colombiano seleccionado grano a grano, sin conservantes masivos. Calidad y frescura del campo a tu plato.</p>
+        </div>
+        <div class="essence-card">
+          <div class="icon" style="color: var(--color-gold);"><i class="fa-solid fa-gears"></i></div>
+          <h3>Tecnología Gastronómica</h3>
+          <p>Procesos automatizados e innovadores que garantizan la estandarización del tamaño, peso y textura de nuestras arepas.</p>
+        </div>
+        <div class="essence-card">
+          <div class="icon" style="color: var(--color-green);"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Compromiso Local</h3>
+          <p>Generación de empleo justo y precios accesibles en Bogotá, apoyando el crecimiento de comercios y distribuidores locales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEL MAÍZ A LA MESA (SCROLLYTELLING) -->
+  <section id="maiz-mesa" class="scrollytelling-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="caption">PROCESO DE CALIDAD</span>
+        <h2>Del Maíz a la Mesa</h2>
+        <p>Acompaña nuestro viaje artesanal e industrial para crear la arepa perfecta.</p>
+      </div>
+      
+      <div class="scroll-track">
+        <!-- Paso 1 -->
+        <div class="scroll-step">
+          <div class="step-img-wrapper">
+            <img src="imagen 1.png" alt="Desgrane y Selección">
+            <span class="step-badge">Calidad Certificada</span>
+          </div>
+          <div class="step-content">
+            <div class="step-number">01</div>
+            <h3>Desgrane y Selección</h3>
+            <p>Seleccionamos maíz peto de alta calidad y lo preparamos mediante lavado profundo asegurando la eliminación de cualquier impureza, manteniendo la esencia natural del grano.</p>
+          </div>
+        </div>
+        
+        <!-- Paso 2 -->
+        <div class="scroll-step">
+          <div class="step-img-wrapper">
+            <img src="imagen 2.png" alt="Cocción y Amasado Artesanal">
+            <span class="step-badge">Amor de Hogar</span>
+          </div>
+          <div class="step-content">
+            <div class="step-number">02</div>
+            <h3>Cocción y Amasado</h3>
+            <p>Cocinamos el grano al punto exacto para molerlo y amasar con una mezcla equilibrada. En nuestra línea de quesos, incorporamos queso campesino de primera calidad en el corazón de la masa.</p>
+          </div>
+        </div>
+        
+        <!-- Paso 3 -->
+        <div class="scroll-step">
+          <div class="step-img-wrapper">
+            <img src="imagen 1.png" alt="Empaque al Vacío y Cadena de Frío">
+            <span class="step-badge">Registro INVIMA</span>
+          </div>
+          <div class="step-content">
+            <div class="step-number">03</div>
+            <h3>Cadena de Frío y Despacho</h3>
+            <p>Empacamos en atmósferas controladas al vacío y almacenamos en cuartos fríos listos para su distribución ágil en Bogotá y alrededores, preservando la textura húmeda y fresca.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO INTERACTIVO -->
+  <section id="catalogo" class="catalog-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="caption">NUESTRO PORTAFOLIO</span>
+        <h2>Descubre el Auténtico Sabor</h2>
+        <p>Elige tu perfil de compra para ver las opciones a tu medida.</p>
+      </div>
+      
+      <div class="catalog-toggle-wrapper">
+        <div class="catalog-toggle">
+          <button id="toggle-b2c" class="toggle-btn active">Consumidor (B2C)</button>
+          <button id="toggle-b2b" class="toggle-btn">Aliado Comercial (B2B)</button>
+        </div>
+      </div>
+      
+      <div class="catalog-filters">
+        <button class="filter-chip active" data-category="todos">Todos</button>
+        <button class="filter-chip" data-category="clasicas">Clásicas Paisas</button>
+        <button class="filter-chip" data-category="saludables">Saludables Fit</button>
+        <button class="filter-chip" data-category="queso">Con Queso</button>
+        <button class="filter-chip" data-category="tradicionales">Maíz Pelado</button>
+      </div>
+      
+      <!-- Grid de Productos -->
+      <div class="products-grid" id="products-grid">
+        <!-- Generado dinámicamente con JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ALIADO COMERCIAL B2B INFO -->
+  <section id="aliados" class="b2b-info-section" style="background-color: var(--color-bg-sec);">
+    <div class="section-container">
+      <div class="b2b-hero-block">
+        <div class="b2b-hero-left">
+          <span class="caption" style="color: var(--color-gold);">PORTAFOLIO HORECA</span>
+          <h3>Abastece tu negocio con la mejor arepa de Bogotá</h3>
+          <p>Ofrecemos estandarización absoluta de gramajes, precios altamente competitivos y entrega oportuna con cadena de frío garantizada.</p>
+          <a href="#contacto" class="btn btn-primary" style="background-color: var(--color-gold); color: var(--color-blue);">Cotizar Mayorista</a>
+        </div>
+        <div>
+          <ul class="b2b-bullets">
+            <li class="b2b-bullet-item">
+              <div class="b2b-bullet-icon">✓</div>
+              <div>
+                <strong>Margen de Ganancia:</strong> Esquema de precios por volumen adaptado a tu canal comercial o de distribución.
+              </div>
+            </li>
+            <li class="b2b-bullet-item">
+              <div class="b2b-bullet-icon">✓</div>
+              <div>
+                <strong>Estandarización:</strong> Peso exacto y cocción controlada para evitar mermas en cocina.
+              </div>
+            </li>
+            <li class="b2b-bullet-item">
+              <div class="b2b-bullet-icon">✓</div>
+              <div>
+                <strong>Despacho Confiable:</strong> Logística propia refrigerada para Bogotá y Sabana.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECETARIO -->
+  <section id="recetario" class="recipes-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="caption">INSPIRACIÓN EN HOGAR</span>
+        <h2>Recetario Promitie</h2>
+        <p>Aprende a preparar platos deliciosos usando nuestras arepas como base.</p>
+      </div>
+      
+      <div class="recipes-grid">
+        <!-- Receta 1 -->
+        <div class="recipe-card">
+          <div class="recipe-img-wrapper">
+            <img src="imagen 2.png" alt="Arepa con Queso y Hogao">
+          </div>
+          <div class="recipe-info">
+            <div class="recipe-tags">
+              <span class="recipe-tag">Desayuno</span>
+              <span class="recipe-tag">Fácil</span>
+            </div>
+            <h3 class="recipe-title">Arepa con Queso Campesino y Hogao Casero</h3>
+            <p class="recipe-ingredients-preview">Arepa Paisa Grande, queso rallado, tomate picado, cebolla, ajo y mantequilla.</p>
+          </div>
+        </div>
+        
+        <!-- Receta 2 -->
+        <div class="recipe-card">
+          <div class="recipe-img-wrapper">
+            <img src="imagen 1.png" alt="Arepa de Maíz Pelado con Carne Desmechada">
+          </div>
+          <div class="recipe-info">
+            <div class="recipe-tags">
+              <span class="recipe-tag">Almuerzo</span>
+              <span class="recipe-tag">Tradicional</span>
+            </div>
+            <h3 class="recipe-title">Arepa Rústica con Carne Desmechada</h3>
+            <p class="recipe-ingredients-preview">Arepa de Maíz Pelado, carne falda de res desmechada, aguacate y cilantro fresco.</p>
+          </div>
+        </div>
+        
+        <!-- Receta 3 -->
+        <div class="recipe-card">
+          <div class="recipe-img-wrapper">
+            <img src="imagen 2.png" alt="Arepa fit con Huevo Poché">
+          </div>
+          <div class="recipe-info">
+            <div class="recipe-tags">
+              <span class="recipe-tag">Fit</span>
+              <span class="recipe-tag">Saludable</span>
+            </div>
+            <h3 class="recipe-title">Arepa de Multigranos con Huevo Poché</h3>
+            <p class="recipe-ingredients-preview">Arepa con Chía o Multigranos, huevos poché, espinacas salteadas y aguacate.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO DE CONTACTO Y MAPA DE FÁBRICA -->
+  <section id="contacto" class="contact-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="caption">HABLEMOS</span>
+        <h2>Ponte en Contacto</h2>
+        <p>Visita nuestra planta en Bogotá o escríbenos para pedidos personalizados.</p>
+      </div>
+      
+      <div class="contact-layout">
+        <!-- Mapa de Fábrica -->
+        <div class="contact-map-side">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.2415174092663!2d-74.04874602525164!3d4.745432995229676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f859599555555%3A0x7d022b794fcfcfcf!2sCra.%2020%20%23164-22%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1692134586414!5m2!1ses!2sco" allowfullscreen="" loading="lazy"></iframe>
+          <div class="map-overlay-info">
+            <div class="live-indicator">
+              <span class="dot-pulse"></span>
+              Atención en Planta Abierta
+            </div>
+            <p><strong>Dirección:</strong> Carrera 20 No. 164 – 22, Bogotá</p>
+            <p><strong>Teléfono Planta:</strong> (601) 6780289</p>
+          </div>
+        </div>
+        
+        <!-- Formulario Inteligente -->
+        <div class="contact-form-side">
+          <h3>Escríbenos tu Solicitud</h3>
+          <form id="promitie-form">
+            <div class="form-group">
+              <label for="tipo-cliente">¿Cuál es tu perfil?</label>
+              <select id="tipo-cliente" required>
+                <option value="B2C">Deseo comprar al detal (Consumidor)</option>
+                <option value="B2B">Soy un negocio / mayorista (B2B)</option>
+              </select>
+            </div>
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono">WhatsApp / Teléfono</label>
+                <input type="tel" id="telefono" placeholder="Ej. 300 123 4567" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="correo">Correo Electrónico</label>
+              <input type="email" id="correo" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="form-group">
+              <label id="mensaje-label" for="mensaje">Mensaje o Sugerencia:</label>
+              <textarea id="mensaje" rows="4" placeholder="Escribe aquí los detalles..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje de contacto</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHATBOT FLOTANTE -->
+  <div class="chatbot-widget">
+    <button id="chatbot-toggle" class="chatbot-toggle-btn">
+      <i class="fa-solid fa-comments" style="font-size: 1.5rem;"></i>
+    </button>
+    <div class="chatbot-box" id="chatbot-box">
+      <div class="chatbot-header">
+        <div class="chatbot-avatar">
+          <img src="LOGO.png" alt="Mascota Promitie" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div>
+          <strong style="display: block; font-size: 0.9rem;">Asistente Promitie</strong>
+          <span style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">En línea ahora</span>
+        </div>
+      </div>
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chat-msg bot">
+          ¡Hola! Soy tu asistente virtual de Promitie Arepas. ¿Cómo te gustaría que te ayudemos hoy?
+        </div>
+      </div>
+      <div class="chatbot-options" id="chatbot-options">
+        <button class="chat-opt-btn" data-option="detal">Quiero comprar al detal (WhatsApp)</button>
+        <button class="chat-opt-btn" data-option="negocio">Soy un negocio (B2B / Precios)</button>
+        <button class="chat-opt-btn" data-option="receta">Busco recetas tradicionales</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARRITO DRAWER -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>Tu Pedido Detal</h3>
+      <button class="close-cart-btn" id="close-cart-btn">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items-container">
+      <!-- Elementos agregados dinámicamente -->
+      <div style="text-align: center; color: var(--color-text-sec); margin-top: 3rem;">
+        <i class="fa-solid fa-basket-shopping" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+        <p>Tu carrito está vacío</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total-value">$0 Cop</span>
+      </div>
+      <button class="cart-checkout-btn" id="checkout-btn">
+        <i class="fa-brands fa-whatsapp"></i> Confirmar pedido por WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="LOGO.png" alt="Promitie Logo" style="height: 60px; margin-bottom: 1.5rem;">
+        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+          Productos Alimenticios de Mi Tierra S.A.S.<br>
+          NIT: 900.xxx.xxx-x<br>
+          Bogotá D.C., Colombia
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Mapa del Sitio</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#esencia">Nuestra Esencia</a></li>
+          <li><a href="#maiz-mesa">Del Maíz a la Mesa</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#recetario">Recetario de la Abuela</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Cumplimiento y Registro</h4>
+        <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 1rem;">
+          Todas nuestras líneas de arepas cuentan con <strong>Registro Sanitario INVIMA</strong> vigente y cumplen con los protocolos estrictos de inocuidad y manipulación de alimentos.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--color-gold);">
+          Habeas Data: Tus datos están protegidos según la Ley 1581 de 2012.
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Productos Alimenticios de Mi Tierra S.A.S. - Promitie Arepas. Todos los derechos reservados.</div>
+      <div>Desarrollado con ❤️ para los amantes del buen maíz.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts GSAP y Lógica -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+  
+  <script>
+    // Conectar trigger del hero al catálogo B2B
+    document.getElementById("hero-b2b-trigger").addEventListener("click", () => {
+      document.getElementById("toggle-b2b").click();
+    });
+  </script>
+</body>
+</html>
