@@ -233,8 +233,8 @@ header.scrolled #open-cart-btn {
   object-fit: cover;
   object-position: center center;
   z-index: 1;
-  /* Opacidad muy baja — video sutil de fondo */
-  opacity: 0.35;
+  /* El video ahora es completamente visible */
+  opacity: 1;
 }
 
 /* El overlay ahora actúa como el tono oscuro principal */
@@ -246,9 +246,9 @@ header.scrolled #open-cart-btn {
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(20, 10, 5, 0.88) 0%,
-    rgba(30, 58, 95, 0.55) 60%,
-    rgba(20, 10, 5, 0.72) 100%
+    rgba(20, 10, 5, 0.3) 0%,
+    rgba(30, 58, 95, 0.2) 60%,
+    rgba(20, 10, 5, 0.4) 100%
   );
   z-index: 2;
 }
@@ -1473,9 +1473,9 @@ header.scrolled .hamburger-btn span {
   .hero-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(20, 10, 5, 0.65) 0%,
-      rgba(20, 10, 5, 0.80) 55%,
-      rgba(20, 10, 5, 0.95) 100%
+      rgba(20, 10, 5, 0.2) 0%,
+      rgba(20, 10, 5, 0.4) 55%,
+      rgba(20, 10, 5, 0.6) 100%
     );
   }
 
