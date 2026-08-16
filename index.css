@@ -528,7 +528,7 @@ section {
 /* Tarjetas Catálogo */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 2.5rem;
 }
 
@@ -1745,11 +1745,19 @@ header.scrolled .hamburger-btn span {
     scroll-snap-align: start;
   }
 
-  /* Catálogo Grid -> Carrusel en Móvil */
+  /* Catálogo: carrusel horizontal en móvil */
   .products-grid {
-    display: flex;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
     overflow-x: auto;
+    overflow-y: visible;
     scroll-snap-type: x mandatory;
+    -webkit-scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     gap: 1.2rem;
     padding-bottom: 1.5rem;
@@ -1758,14 +1766,30 @@ header.scrolled .hamburger-btn span {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
     -webkit-overflow-scrolling: touch;
+    /* Quitar el grid-template-columns por completo en móvil */
+    grid-template-columns: unset;
   }
 
   .products-grid::-webkit-scrollbar {
-    display: none;
+    height: 4px;
+    display: block;
+  }
+
+  .products-grid::-webkit-scrollbar-track {
+    background: var(--color-bg-sec);
+    border-radius: 2px;
+  }
+
+  .products-grid::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 2px;
   }
 
   .product-card {
+    min-width: 85vw;
+    max-width: 85vw;
     width: 85vw;
+    -ms-flex-negative: 0;
     flex-shrink: 0;
     scroll-snap-align: center;
   }
