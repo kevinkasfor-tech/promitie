@@ -110,6 +110,37 @@
     </div>
   </section>
 
+  <!-- CATÁLOGO INTERACTIVO -->
+  <section id="catalogo" class="catalog-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="caption">NUESTRO PORTAFOLIO</span>
+        <h2>Descubre el Auténtico Sabor</h2>
+        <p>Elige tu perfil de compra para ver las opciones a tu medida.</p>
+      </div>
+      
+      <div class="catalog-toggle-wrapper">
+        <div class="catalog-toggle">
+          <button id="toggle-b2c" class="toggle-btn active">Consumidor (B2C)</button>
+          <button id="toggle-b2b" class="toggle-btn">Aliado Comercial (B2B)</button>
+        </div>
+      </div>
+      
+      <div class="catalog-filters">
+        <button class="filter-chip active" data-category="todos">Todos</button>
+        <button class="filter-chip" data-category="clasicas">Clásicas Paisas</button>
+        <button class="filter-chip" data-category="saludables">Saludables Fit</button>
+        <button class="filter-chip" data-category="queso">Con Queso</button>
+        <button class="filter-chip" data-category="tradicionales">Maíz Pelado</button>
+      </div>
+      
+      <!-- Grid de Productos -->
+      <div class="products-grid" id="products-grid">
+        <!-- Generado dinámicamente con JS -->
+      </div>
+    </div>
+  </section>
+
   <!-- DEL MAÍZ A LA MESA (SCROLLYTELLING) -->
   <section id="maiz-mesa" class="scrollytelling-section">
     <div class="section-container">
@@ -158,37 +189,6 @@
             <p>Empacamos en atmósferas controladas al vacío y almacenamos en cuartos fríos listos para su distribución ágil en Bogotá y alrededores, preservando la textura húmeda y fresca.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATÁLOGO INTERACTIVO -->
-  <section id="catalogo" class="catalog-section">
-    <div class="section-container">
-      <div class="section-header">
-        <span class="caption">NUESTRO PORTAFOLIO</span>
-        <h2>Descubre el Auténtico Sabor</h2>
-        <p>Elige tu perfil de compra para ver las opciones a tu medida.</p>
-      </div>
-      
-      <div class="catalog-toggle-wrapper">
-        <div class="catalog-toggle">
-          <button id="toggle-b2c" class="toggle-btn active">Consumidor (B2C)</button>
-          <button id="toggle-b2b" class="toggle-btn">Aliado Comercial (B2B)</button>
-        </div>
-      </div>
-      
-      <div class="catalog-filters">
-        <button class="filter-chip active" data-category="todos">Todos</button>
-        <button class="filter-chip" data-category="clasicas">Clásicas Paisas</button>
-        <button class="filter-chip" data-category="saludables">Saludables Fit</button>
-        <button class="filter-chip" data-category="queso">Con Queso</button>
-        <button class="filter-chip" data-category="tradicionales">Maíz Pelado</button>
-      </div>
-      
-      <!-- Grid de Productos -->
-      <div class="products-grid" id="products-grid">
-        <!-- Generado dinámicamente con JS -->
       </div>
     </div>
   </section>
@@ -516,6 +516,39 @@
       <div>Desarrollado con ❤️ para los amantes del buen maíz.</div>
     </div>
   </footer>
+
+  <!-- PRODUCT MODAL -->
+  <div class="product-modal-overlay" id="product-modal">
+    <div class="product-modal-content">
+      <button class="close-modal-btn" id="close-modal-btn">&times;</button>
+      <div class="modal-body">
+        <div class="modal-img-col">
+          <img src="" id="modal-img" alt="Producto">
+        </div>
+        <div class="modal-info-col">
+          <span class="modal-badge" id="modal-category">Categoría</span>
+          <h2 id="modal-title">Nombre del Producto</h2>
+          <p id="modal-desc" class="modal-desc">Descripción</p>
+          
+          <div class="modal-benefits">
+            <h4><i class="fa-solid fa-leaf"></i> Beneficios Alimenticios</h4>
+            <ul id="modal-benefits-list">
+              <!-- JS -->
+            </ul>
+          </div>
+          
+          <div class="modal-footer">
+            <div class="modal-price-box">
+              <span id="modal-units" class="modal-units">Unidades</span>
+              <span id="modal-price" class="modal-price">$0</span>
+            </div>
+            <!-- Quantity and Add to cart will be injected dynamically based on mode if needed, or we just show B2C add to cart -->
+            <div id="modal-action-area"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts GSAP y Lógica -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

@@ -198,6 +198,20 @@ const PRODUCTOS = [
     preparacion: "Dorar a la plancha a fuego medio."
   }
 ];
+];
+
+// Agregar beneficios dinámicamente según la categoría
+PRODUCTOS.forEach(prod => {
+  if (prod.categoria === 'clasicas') {
+    prod.beneficios = ["Fuente de energía natural", "Ideal para una dieta equilibrada", "Sin conservantes artificiales"];
+  } else if (prod.categoria === 'saludables') {
+    prod.beneficios = ["Alto contenido en fibra", "Aporta minerales esenciales", "Ayuda a la digestión"];
+  } else if (prod.categoria === 'queso') {
+    prod.beneficios = ["Aporte de calcio y proteínas", "Sabor reconfortante", "Elaborado con queso campesino fresco"];
+  } else if (prod.categoria === 'tradicionales') {
+    prod.beneficios = ["Sabor rústico tradicional", "Fuente de energía natural", "Maíz pelado 100% natural"];
+  }
+});
 
 // Estado global de la aplicación
 let activeMode = 'b2c'; // 'b2c' o 'b2b'
@@ -212,6 +226,15 @@ document.addEventListener("DOMContentLoaded", () => {
   initChatbot();
   initContactForm();
   initGSAPAnimations();
+  initMobileCarousel();
+  
+  // Cerrar modal global
+  const closeBtn = document.getElementById("close-modal-btn");
+  if(closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      document.getElementById("product-modal").classList.remove("open");
+    });
+  }
 });
 
 // Cambiar estilo de la barra de navegación al hacer scroll
@@ -279,7 +302,7 @@ function renderCatalog() {
     if (activeMode === 'b2c') {
       // Tarjeta B2C
       card.innerHTML = `
-        <div class="prod-img-wrapper">
+        <div class="prod-img-wrapper open-modal-trigger" data-id="${prod.id}" style="cursor: pointer;" title="Ver detalles">
           <img src="${imgUrl}" alt="${prod.nombre}">
           <span class="prod-region-badge">${prod.origen}</span>
         </div>
@@ -303,7 +326,7 @@ function renderCatalog() {
     } else {
       // Ficha Técnica / Vista B2B
       card.innerHTML = `
-        <div class="prod-img-wrapper">
+        <div class="prod-img-wrapper open-modal-trigger" data-id="${prod.id}" style="cursor: pointer;" title="Ver detalles">
           <img src="${imgUrl}" alt="${prod.nombre}">
           <span class="prod-region-badge" style="background-color: var(--color-blue);">${prod.sku}</span>
         </div>
@@ -382,6 +405,10 @@ function bindB2CEvents() {
       }, 1500);
     });
   });
+  
+  cards.querySelectorAll(".open-modal-trigger").forEach(el => {
+    el.addEventListener("click", () => openProductModal(el.dataset.id));
+  });
 }
 
 // Asignar eventos para B2B (Cotizar directo)
@@ -400,6 +427,75 @@ function bindB2BEvents() {
       }
     });
   });
+  
+  const cards = document.getElementById("products-grid");
+  cards.querySelectorAll(".open-modal-trigger").forEach(el => {
+    el.addEventListener("click", () => openProductModal(el.dataset.id));
+  });
+}
+
+// Abrir Modal de Producto
+function openProductModal(id) {
+  const prod = PRODUCTOS.find(p => p.id === id);
+  if (!prod) return;
+  
+  const imgUrl = prod.categoria === 'queso' ? 'imagen 2.png' : 'imagen 1.png';
+  document.getElementById("modal-img").src = imgUrl;
+  document.getElementById("modal-category").innerText = prod.origen;
+  document.getElementById("modal-title").innerText = prod.nombre;
+  
+  const desc = activeMode === 'b2c' ? prod.descripcionB2C : prod.descripcionB2B;
+  document.getElementById("modal-desc").innerText = desc;
+  
+  const ul = document.getElementById("modal-benefits-list");
+  ul.innerHTML = "";
+  if (prod.beneficios) {
+    prod.beneficios.forEach(b => {
+      const li = document.createElement("li");
+      li.innerText = b;
+      ul.appendChild(li);
+    });
+  }
+  
+  document.getElementById("modal-units").innerText = activeMode === 'b2c' ? `Paquete x ${prod.unidades} uds` : `Caja x ${prod.caja}`;
+  document.getElementById("modal-price").innerText = activeMode === 'b2c' ? `$${prod.precio.toLocaleString()} Cop` : 'Precios Especiales B2B';
+  
+  const actionArea = document.getElementById("modal-action-area");
+  if (activeMode === 'b2c') {
+    actionArea.innerHTML = `
+      <div class="quantity-selector" style="margin-bottom: 0.5rem; justify-content: flex-end;">
+        <button class="qty-btn minus" id="modal-qty-minus">-</button>
+        <span class="qty-val" id="modal-qty-val">1</span>
+        <button class="qty-btn plus" id="modal-qty-plus">+</button>
+      </div>
+      <button class="add-to-cart-btn" id="modal-add-cart" style="width: 100%;">Agregar al detal</button>
+    `;
+    
+    let qty = 1;
+    document.getElementById("modal-qty-minus").onclick = () => { if(qty > 1) { qty--; document.getElementById("modal-qty-val").innerText = qty; }};
+    document.getElementById("modal-qty-plus").onclick = () => { qty++; document.getElementById("modal-qty-val").innerText = qty; };
+    document.getElementById("modal-add-cart").onclick = (e) => {
+      addToCart(prod.id, qty);
+      e.target.innerText = "✓ Agregado";
+      e.target.classList.add("added");
+      setTimeout(() => { e.target.innerText = "Agregar al detal"; e.target.classList.remove("added"); }, 1500);
+    };
+  } else {
+    actionArea.innerHTML = `<a href="#contacto" class="b2b-cotizar-btn" style="display:block; text-align:center;">Solicitar Cotización B2B</a>`;
+    actionArea.querySelector(".b2b-cotizar-btn").onclick = (e) => {
+      e.preventDefault();
+      document.getElementById("product-modal").classList.remove("open");
+      const selectTipo = document.getElementById("tipo-cliente");
+      const textarea = document.getElementById("mensaje");
+      if (selectTipo && textarea) {
+        selectTipo.value = "B2B";
+        textarea.value = `Hola, estoy interesado en una cotización por volumen del producto: ${prod.nombre} B2B.`;
+        document.getElementById("contacto").scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  }
+  
+  document.getElementById("product-modal").classList.add("open");
 }
 
 // Lógica de Carrito de Compras
@@ -625,6 +721,28 @@ function initGSAPAnimations() {
       ease: "power2.out"
     });
   }
+}
+
+// Carrusel automático en móvil
+function initMobileCarousel() {
+  const grid = document.getElementById("products-grid");
+  if (!grid) return;
+  
+  setInterval(() => {
+    if (window.innerWidth <= 768) {
+      // Obtenemos el ancho de una tarjeta + el gap (aprox 20px)
+      const firstCard = grid.querySelector('.product-card');
+      if (!firstCard) return;
+      const cardWidth = firstCard.offsetWidth + 20; 
+      
+      // Si llegamos al final del scroll, regresamos al inicio
+      if (grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 10) {
+        grid.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        grid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }
+  }, 4000);
 }
 
 /* ============================================
