@@ -198,7 +198,6 @@ const PRODUCTOS = [
     preparacion: "Dorar a la plancha a fuego medio."
   }
 ];
-];
 
 // Agregar beneficios dinámicamente según la categoría
 PRODUCTOS.forEach(prod => {
