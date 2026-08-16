@@ -611,6 +611,19 @@ function initGSAPAnimations() {
         duration: 0.9
       });
     });
+
+    // Animación para reseñas
+    gsap.from(".review-card", {
+      scrollTrigger: {
+        trigger: ".reviews-grid",
+        start: "top 85%"
+      },
+      opacity: 0,
+      y: 40,
+      duration: 0.7,
+      stagger: 0.12,
+      ease: "power2.out"
+    });
   }
 }
 
