@@ -1,0 +1,115 @@
+/* ============================================================
+   PROMITIE v2 — Mejoras sobre el diseño legacy
+   ============================================================ */
+
+/* ---------- Indicador de scroll del hero ---------- */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.85);
+  z-index: 3;
+  transition: opacity 0.3s ease;
+}
+.scroll-hint:hover { color: var(--color-gold); }
+.scroll-hint .scroll-hint-dot { transform-box: fill-box; transform-origin: center; }
+
+/* ---------- Línea SVG de progreso del proceso ---------- */
+.scroll-track { position: relative; }
+.process-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 4px;
+  pointer-events: none;
+  opacity: 0.55;
+}
+@media (max-width: 768px) {
+  .process-line { left: 12px; transform: none; }
+}
+
+/* ---------- Chatbot: tarjetas de producto recomendado ---------- */
+.chat-products {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+.chat-product-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--color-white);
+  border: 1px solid rgba(42, 29, 23, 0.1);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-warm);
+}
+.chat-product-chip:hover {
+  transform: translateX(4px);
+  border-color: var(--color-gold);
+}
+.chat-product-chip img {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.chat-product-name {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.25;
+}
+.chat-product-price {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-red);
+  white-space: nowrap;
+}
+
+/* ---------- Ajustes responsive extra ---------- */
+@media (max-width: 768px) {
+  .chatbot-box {
+    width: calc(100vw - 2rem);
+    max-width: calc(100vw - 2rem);
+    right: 0;
+  }
+  .chatbot-widget {
+    right: 1rem;
+    bottom: 1rem;
+  }
+  /* Evita que el video móvil del hero parpadee en iOS */
+  .hero-video-mobile { display: block; }
+}
+
+@media (max-width: 480px) {
+  .chat-product-chip img { width: 36px; height: 36px; }
+  .chat-product-name { font-size: 0.75rem; }
+}
+
+/* ---------- Accesibilidad: foco visible ---------- */
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

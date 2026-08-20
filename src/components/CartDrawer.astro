@@ -1,0 +1,24 @@
+---
+// Carrito lateral con persistencia (localStorage)
+---
+<div class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Carrito de compras">
+  <div class="cart-header">
+    <h3>Tu Pedido Detal</h3>
+    <button class="close-cart-btn" id="close-cart-btn" aria-label="Cerrar carrito">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items-container">
+    <div style="text-align: center; color: var(--color-text-sec); margin-top: 3rem;">
+      <i class="fa-solid fa-basket-shopping" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+      <p>Tu carrito está vacío</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total:</span>
+      <span id="cart-total-value">$0 Cop</span>
+    </div>
+    <button class="cart-checkout-btn" id="checkout-btn">
+      <i class="fa-brands fa-whatsapp"></i> Confirmar pedido por WhatsApp
+    </button>
+  </div>
+</div>

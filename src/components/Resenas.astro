@@ -1,0 +1,49 @@
+---
+const RESENAS = [
+  {
+    texto: 'Las Arepas Paisa Grande son una delicia. Las pedí por primera vez y llegaron frescas y bien empacadas al vacío. Ya son parte del desayuno de mi familia cada semana.',
+    iniciales: 'MR', nombre: 'Marcela R.', producto: 'Arepas Paisa Grande · Cliente hogareña',
+  },
+  {
+    texto: 'Tengo una cafetería en Suba y compro las Arepas Rellenas de Queso al por mayor. El gramaje es exacto, los clientes las piden todos los días. El despacho siempre llega a tiempo y en perfecto estado.',
+    iniciales: 'JC', nombre: 'Juan C. Vargas', producto: 'Arepas Rellenas de Queso · Aliado B2B',
+  },
+  {
+    texto: 'Pedí las de Chía y Multigranos para mis clientes fit. Excelente respuesta al WhatsApp y el producto llegó al día siguiente. De lo mejor que he encontrado en Bogotá para menú saludable.',
+    iniciales: 'LP', nombre: 'Laura P.', producto: 'Arepas de Maíz Peto con Chía · Restaurante Fit',
+  },
+  {
+    texto: 'Increíble la consistencia de sabor. Llevamos 3 meses comprando las Arepas Amasadas con Queso para nuestro hotel y nunca hemos tenido una queja. El servicio de entrega es puntual y confiable.',
+    iniciales: 'AR', nombre: 'Andrés R.', producto: 'Arepas Amasadas con Queso · Hotel HORECA',
+  },
+  {
+    texto: 'Las Arepas de Maíz Pelado son un clásico que no falla. Sabor hogareño de verdad, como las que hacía mi mamá. Me las envían rapidísimo y siempre vienen bien frías. ¡100% recomendadas!',
+    iniciales: 'CS', nombre: 'Carolina S.', producto: 'Arepas de Maíz Pelado · Cliente hogareña',
+  },
+];
+---
+<section id="resenas" class="reviews-section">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <span class="caption">LO QUE DICEN NUESTROS CLIENTES</span>
+      <h2>Reseñas Reales, Sabor Genuino</h2>
+      <p>Familias y negocios de Bogotá que ya disfrutan de nuestras arepas cada semana.</p>
+    </div>
+
+    <div class="reviews-grid">
+      {RESENAS.map(r => (
+        <article class="review-card" data-reveal>
+          <div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p class="review-text">"{r.texto}"</p>
+          <div class="review-author">
+            <div class="review-avatar">{r.iniciales}</div>
+            <div>
+              <strong>{r.nombre}</strong>
+              <span class="review-product">{r.producto}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

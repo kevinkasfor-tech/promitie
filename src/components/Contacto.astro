@@ -1,0 +1,61 @@
+---
+// Contacto — formulario inteligente B2C/B2B + mapa
+---
+<section id="contacto" class="contact-section">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <span class="caption">HABLEMOS</span>
+      <h2>Ponte en Contacto</h2>
+      <p>Visita nuestra planta en Bogotá o escríbenos para pedidos personalizados.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-map-side" data-reveal>
+        <iframe
+          title="Mapa de la planta Promitie en Bogotá"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.2415174092663!2d-74.04874602525164!3d4.745432995229676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f859599555555%3A0x7d022b794fcfcfcf!2sCra.%2020%20%23164-22%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1692134586414!5m2!1ses!2sco"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-overlay-info">
+          <div class="live-indicator">
+            <span class="dot-pulse"></span>
+            Atención en Planta Abierta
+          </div>
+          <p><strong>Dirección:</strong> Carrera 20 No. 164 – 22, Bogotá</p>
+          <p><strong>Teléfono Planta:</strong> (601) 6780289</p>
+        </div>
+      </div>
+
+      <div class="contact-form-side" data-reveal>
+        <h3>Escríbenos tu Solicitud</h3>
+        <form id="promitie-form">
+          <div class="form-group">
+            <label for="tipo-cliente">¿Cuál es tu perfil?</label>
+            <select id="tipo-cliente" required>
+              <option value="B2C">Deseo comprar al detal (Consumidor)</option>
+              <option value="B2B">Soy un negocio / mayorista (B2B)</option>
+            </select>
+          </div>
+          <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="nombre">Nombre Completo</label>
+              <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">WhatsApp / Teléfono</label>
+              <input type="tel" id="telefono" placeholder="Ej. 300 123 4567" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" placeholder="correo@ejemplo.com" required />
+          </div>
+          <div class="form-group">
+            <label id="mensaje-label" for="mensaje">Mensaje o Sugerencia:</label>
+            <textarea id="mensaje" rows="4" placeholder="Escribe aquí los detalles..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje de contacto</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

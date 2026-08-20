@@ -1,0 +1,31 @@
+---
+// Hero con video responsive (desktop horizontal / móvil vertical)
+---
+<section id="inicio" class="hero">
+  <video autoplay muted loop playsinline class="hero-video-bg hero-video-desktop" aria-hidden="true">
+    <source src="/promi.webm" type="video/webm" />
+  </video>
+  <video autoplay muted loop playsinline class="hero-video-bg hero-video-mobile" aria-hidden="true">
+    <source src="/vertical%20promitie.webm" type="video/webm" />
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <span class="handwritten" style="color: var(--color-gold); font-size: 2.2rem;">Hechas con Amor de Hogar</span>
+    <h1>Arepas tradicionales colombianas para <span class="signature-underline">cada mesa</span> y cada negocio</h1>
+    <p>Sabores regionales elaborados para un desayuno memorable y formatos prácticos para restaurantes, cafeterías, hoteles y distribuidores.</p>
+
+    <div class="hero-ctas">
+      <a href="#catalogo" class="btn btn-primary">Quiero probar las arepas</a>
+      <a href="#catalogo" id="hero-b2b-trigger" class="btn btn-outline-white">Tengo un negocio</a>
+    </div>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <a href="#esencia" class="scroll-hint" aria-label="Desplázate para descubrir">
+    <svg width="28" height="44" viewBox="0 0 28 44" fill="none" aria-hidden="true">
+      <rect x="1.5" y="1.5" width="25" height="41" rx="12.5" stroke="currentColor" stroke-width="2"/>
+      <circle class="scroll-hint-dot" cx="14" cy="12" r="3" fill="currentColor"/>
+    </svg>
+  </a>
+</section>

@@ -1,0 +1,55 @@
+---
+// Del Maíz a la Mesa — scrollytelling con línea SVG animada por scroll
+---
+<section id="maiz-mesa" class="scrollytelling-section">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <span class="caption">PROCESO DE CALIDAD</span>
+      <h2>Del Maíz a la Mesa</h2>
+      <p>Acompaña nuestro viaje artesanal e industrial para crear la arepa perfecta.</p>
+    </div>
+
+    <div class="scroll-track">
+      <!-- Línea de progreso SVG (se dibuja con el scroll en desktop) -->
+      <svg class="process-line" viewBox="0 0 4 900" preserveAspectRatio="none" aria-hidden="true">
+        <path id="process-path" d="M2,0 L2,900" stroke="var(--color-gold)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+
+      <div class="scroll-step" data-reveal>
+        <div class="step-img-wrapper">
+          <img src="/imagen%201.png" alt="Desgrane y Selección" loading="lazy" />
+          <span class="step-badge">Calidad Certificada</span>
+        </div>
+        <div class="step-content">
+          <div class="step-number">01</div>
+          <h3>Desgrane y Selección</h3>
+          <p>Seleccionamos maíz peto de alta calidad y lo preparamos mediante lavado profundo asegurando la eliminación de cualquier impureza, manteniendo la esencia natural del grano.</p>
+        </div>
+      </div>
+
+      <div class="scroll-step" data-reveal>
+        <div class="step-img-wrapper">
+          <img src="/imagen%202.png" alt="Cocción y Amasado Artesanal" loading="lazy" />
+          <span class="step-badge">Amor de Hogar</span>
+        </div>
+        <div class="step-content">
+          <div class="step-number">02</div>
+          <h3>Cocción y Amasado</h3>
+          <p>Cocinamos el grano al punto exacto para molerlo y amasar con una mezcla equilibrada. En nuestra línea de quesos, incorporamos queso campesino de primera calidad en el corazón de la masa.</p>
+        </div>
+      </div>
+
+      <div class="scroll-step" data-reveal>
+        <div class="step-img-wrapper">
+          <img src="/imagen%201.png" alt="Empaque al Vacío y Cadena de Frío" loading="lazy" />
+          <span class="step-badge">Registro INVIMA</span>
+        </div>
+        <div class="step-content">
+          <div class="step-number">03</div>
+          <h3>Cadena de Frío y Despacho</h3>
+          <p>Empacamos en atmósferas controladas al vacío y almacenamos en cuartos fríos listos para su distribución ágil en Bogotá y alrededores, preservando la textura húmeda y fresca.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

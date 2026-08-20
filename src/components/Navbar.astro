@@ -1,0 +1,42 @@
+---
+// Barra de navegación con menú móvil
+---
+<header>
+  <div class="nav-container">
+    <a href="#inicio" class="logo-link" id="nav-logo">
+      <img src="/LOGO.png" alt="Promitie Arepas Logo" width="120" height="48" />
+    </a>
+    <nav aria-label="Navegación principal">
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#esencia" class="nav-link">Esencia</a></li>
+        <li><a href="#maiz-mesa" class="nav-link">Proceso</a></li>
+        <li><a href="#catalogo" class="nav-link">Catálogo</a></li>
+        <li><a href="#recetario" class="nav-link">Recetas</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <button id="open-cart-btn" class="btn btn-secondary" style="padding: 0.6rem 1.2rem; border-radius: var(--radius-pill);" aria-label="Abrir carrito">
+        <i class="fa-solid fa-basket-shopping"></i> <span id="cart-count">0</span>
+      </button>
+      <a href="#contacto" class="btn btn-primary desktop-only" style="padding: 0.6rem 1.5rem;">Pedir al detal</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">&times;</button>
+      <ul class="mobile-nav-menu">
+        <li><a href="#inicio" class="mobile-nav-link">Inicio</a></li>
+        <li><a href="#esencia" class="mobile-nav-link">Esencia</a></li>
+        <li><a href="#maiz-mesa" class="mobile-nav-link">Proceso</a></li>
+        <li><a href="#catalogo" class="mobile-nav-link">Catálogo</a></li>
+        <li><a href="#recetario" class="mobile-nav-link">Recetas</a></li>
+        <li><a href="#contacto" class="mobile-nav-link">Contacto</a></li>
+      </ul>
+      <a href="#contacto" class="btn btn-primary mobile-nav-cta">Pedir al detal</a>
+    </div>
+  </div>
+</header>

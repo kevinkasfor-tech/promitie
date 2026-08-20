@@ -1,0 +1,32 @@
+---
+// Chatbot recomendador por ocasión (la lógica vive en main.ts)
+---
+<div class="chatbot-widget">
+  <button id="chatbot-toggle" class="chatbot-toggle-btn" aria-label="Abrir asistente virtual">
+    <i class="fa-solid fa-comments" style="font-size: 1.5rem;"></i>
+  </button>
+  <div class="chatbot-box" id="chatbot-box" role="dialog" aria-label="Asistente virtual Promitie">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">
+        <img src="/LOGO.png" alt="Mascota Promitie" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+      <div>
+        <strong style="display: block; font-size: 0.9rem;">Asistente Promitie</strong>
+        <span style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">En línea ahora</span>
+      </div>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+      <div class="chat-msg bot">
+        ¡Hola! 👋 Soy tu asistente de Promitie. Dime la ocasión y te recomiendo la arepa perfecta. ¿Qué tienes en mente hoy?
+      </div>
+    </div>
+    <div class="chatbot-options" id="chatbot-options">
+      <button class="chat-opt-btn" data-option="desayuno">🌅 Desayuno familiar</button>
+      <button class="chat-opt-btn" data-option="merienda">🧀 Merienda o antojo</button>
+      <button class="chat-opt-btn" data-option="asado">🔥 Asado / parranda</button>
+      <button class="chat-opt-btn" data-option="fit">💪 Vida saludable (Fit)</button>
+      <button class="chat-opt-btn" data-option="evento">🎉 Reunión o evento</button>
+      <button class="chat-opt-btn" data-option="negocio">🏪 Soy un negocio (B2B)</button>
+    </div>
+  </div>
+</div>

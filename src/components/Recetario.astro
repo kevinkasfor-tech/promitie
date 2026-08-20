@@ -1,0 +1,51 @@
+---
+const RECETAS = [
+  {
+    img: '/imagen%202.png',
+    alt: 'Arepa con Queso y Hogao',
+    tags: ['Desayuno', 'Fácil'],
+    titulo: 'Arepa con Queso Campesino y Hogao Casero',
+    ingredientes: 'Arepa Paisa Grande, queso rallado, tomate picado, cebolla, ajo y mantequilla.',
+  },
+  {
+    img: '/imagen%201.png',
+    alt: 'Arepa de Maíz Pelado con Carne Desmechada',
+    tags: ['Almuerzo', 'Tradicional'],
+    titulo: 'Arepa Rústica con Carne Desmechada',
+    ingredientes: 'Arepa de Maíz Pelado, carne falda de res desmechada, aguacate y cilantro fresco.',
+  },
+  {
+    img: '/imagen%202.png',
+    alt: 'Arepa fit con Huevo Poché',
+    tags: ['Fit', 'Saludable'],
+    titulo: 'Arepa de Multigranos con Huevo Poché',
+    ingredientes: 'Arepa con Chía o Multigranos, huevos poché, espinacas salteadas y aguacate.',
+  },
+];
+---
+<section id="recetario" class="recipes-section">
+  <div class="section-container">
+    <div class="section-header" data-reveal>
+      <span class="caption">INSPIRACIÓN EN HOGAR</span>
+      <h2>Recetario Promitie</h2>
+      <p>Aprende a preparar platos deliciosos usando nuestras arepas como base.</p>
+    </div>
+
+    <div class="recipes-grid">
+      {RECETAS.map(r => (
+        <article class="recipe-card" data-reveal>
+          <div class="recipe-img-wrapper">
+            <img src={r.img} alt={r.alt} loading="lazy" />
+          </div>
+          <div class="recipe-info">
+            <div class="recipe-tags">
+              {r.tags.map(t => <span class="recipe-tag">{t}</span>)}
+            </div>
+            <h3 class="recipe-title">{r.titulo}</h3>
+            <p class="recipe-ingredients-preview">{r.ingredientes}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

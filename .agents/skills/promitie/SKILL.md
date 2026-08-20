@@ -29,9 +29,23 @@ El sistema cuenta con un catálogo de 42 skills instaladas localmente en `C:\Use
 
 ---
 
+## 🏗️ Arquitectura Actual (v2 — Agosto 2026)
+
+El sitio fue migrado a **Astro.js v4** (salida estática) con **GSAP + ScrollTrigger** (paquete npm `gsap`).
+
+- `src/pages/index.astro` → página única (landing).
+- `src/layouts/Base.astro` → layout global (importa `src/styles/global.css` + `src/styles/enhancements.css`).
+- `src/components/` → Navbar, Hero, Esencia, Catalogo, Proceso, Aliados, Recetario, Resenas, Contacto, Footer, CartDrawer, ProductModal, Chatbot.
+- `src/data/productos.ts` → catálogo único de verdad (13 arepas, incluye `ocasiones` para el chatbot recomendador y `WHATSAPP_NUMERO`).
+- `src/scripts/main.ts` → catálogo, carrito con persistencia `localStorage` (`promitie-cart-v1`), chatbot recomendador por ocasión, formulario, nav móvil.
+- `src/scripts/animations.ts` → GSAP: hero timeline, parallax, reveals `[data-reveal]`, línea SVG del proceso con scrub. Respeta `prefers-reduced-motion`.
+- `public/` → assets estáticos (videos, logo, imágenes).
+- `legacy/` → versión 1 (HTML/JS vanilla) solo como referencia; NO se usa en el build.
+- Comandos: `npm run dev` / `npm run build` (salida `dist/`, despliega en Netlify).
+
 ## 🎨 Activos Locales del Proyecto
 
-El espacio de trabajo actual cuenta con los siguientes recursos estáticos iniciales que debes utilizar en la interfaz:
+El espacio de trabajo actual cuenta con los siguientes recursos estáticos iniciales que debes utilizar en la interfaz (copiados en `public/`):
 - **Logo del Proyecto:** `LOGO.png` ([ver logo](file:///c:/Users/kevin/.gemini/antigravity/playground/PROMITIE/LOGO.png))
 - **Imágenes de Referencia:**
   - `imagen 1.png` ([ver imagen 1](file:///c:/Users/kevin/.gemini/antigravity/playground/PROMITIE/imagen%201.png))
