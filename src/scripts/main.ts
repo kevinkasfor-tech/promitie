@@ -417,26 +417,91 @@ function initChatbot() {
     return el;
   };
 
-  const pushProductos = (ids: string[]) => {
+  const pushRecomendacion = (rec: { intro: string; ids: string[]; cierre: string }) => {
+    const seleccion: Record<string, number> = {};
+    rec.ids.forEach(id => { seleccion[id] = 1; });
+
+    pushMsg(rec.intro, 'bot');
+
     const wrap = document.createElement('div');
     wrap.className = 'chat-products';
-    ids.forEach(id => {
+    rec.ids.forEach(id => {
       const p = PRODUCTOS.find(x => x.id === id)!;
-      const chip = document.createElement('button');
-      chip.className = 'chat-product-chip';
-      chip.innerHTML = `
+      const row = document.createElement('div');
+      row.className = 'chat-product-row';
+      row.innerHTML = `
         <img src="${imagenDe(p)}" alt="${p.nombre}">
-        <span class="chat-product-name">${p.nombre}</span>
-        <span class="chat-product-price">${COP(p.precio)}</span>`;
-      chip.addEventListener('click', () => {
-        box.classList.remove('open');
-        $('#catalogo').scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => openProductModal(p.id), 600);
-      });
-      wrap.appendChild(chip);
+        <div class="chat-product-info">
+          <span class="chat-product-name">${p.nombre}</span>
+          <span class="chat-product-price">${COP(p.precio)}</span>
+        </div>
+        <div class="chat-qty-selector">
+          <button type="button" class="chat-qty-btn minus" data-id="${id}" aria-label="Disminuir unidades">−</button>
+          <span class="chat-qty-val" data-id="${id}">1</span>
+          <button type="button" class="chat-qty-btn plus" data-id="${id}" aria-label="Aumentar unidades">+</button>
+        </div>`;
+      wrap.appendChild(row);
     });
     messages.appendChild(wrap);
+
+    const form = document.createElement('div');
+    form.className = 'chat-order-form';
+    form.innerHTML = `
+      <p class="chat-order-title">Ajusta las unidades con + y − y deja tus datos 🛒</p>
+      <input type="text" class="chat-order-input" id="chat-order-name" placeholder="Tu nombre" autocomplete="name">
+      <input type="text" class="chat-order-input" id="chat-order-address" placeholder="Dirección de entrega" autocomplete="street-address">
+      <div class="chat-order-total">Total: <span class="chat-order-total-value"></span></div>
+      <button type="button" class="chat-order-btn" id="chat-order-submit">
+        <i class="fa-brands fa-whatsapp"></i> Completar compra
+      </button>`;
+
+    const updateTotal = () => {
+      let total = 0;
+      rec.ids.forEach(id => {
+        const p = PRODUCTOS.find(x => x.id === id)!;
+        total += p.precio * seleccion[id];
+      });
+      form.querySelector('.chat-order-total-value')!.textContent = COP(total);
+    };
+
+    wrap.querySelectorAll<HTMLButtonElement>('.chat-qty-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        const id = b.dataset.id!;
+        const next = Math.max(1, seleccion[id] + (b.classList.contains('plus') ? 1 : -1));
+        seleccion[id] = next;
+        wrap.querySelector<HTMLElement>(`.chat-qty-val[data-id="${id}"]`)!.innerText = String(next);
+        updateTotal();
+      });
+    });
+
+    form.querySelector<HTMLButtonElement>('#chat-order-submit')!.addEventListener('click', () => {
+      const nameInput = form.querySelector<HTMLInputElement>('#chat-order-name')!;
+      const addrInput = form.querySelector<HTMLInputElement>('#chat-order-address')!;
+      const nombre = nameInput.value.trim();
+      const direccion = addrInput.value.trim();
+      if (!nombre || !direccion) {
+        pushMsg('Por favor completa tu nombre y la dirección de entrega para enviar el pedido. ✍️', 'bot');
+        nameInput.classList.add('chat-order-error');
+        addrInput.classList.add('chat-order-error');
+        return;
+      }
+      let msg = '¡Hola Promitie! Quiero completar mi pedido:\n\n';
+      let total = 0;
+      rec.ids.forEach(id => {
+        const p = PRODUCTOS.find(x => x.id === id)!;
+        const q = seleccion[id];
+        msg += `• ${p.nombre} x${q} pqts - ${COP(p.precio * q)}\n`;
+        total += p.precio * q;
+      });
+      msg += `\n👤 Nombre: ${nombre}\n📍 Dirección: ${direccion}\n\nTotal Pedido: ${COP(total)}\nPor favor confírmenme pago y despacho.`;
+      window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`, '_blank');
+      pushMsg('¡Listo! Abrimos WhatsApp con tu pedido. 🎉', 'bot');
+    });
+
+    messages.appendChild(form);
+    updateTotal();
     messages.scrollTop = messages.scrollHeight;
+    setTimeout(() => pushMsg(rec.cierre + ' Ajusta las cantidades y completa tus datos para enviar el pedido por WhatsApp.', 'bot'), 400);
   };
 
   optionsContainer.querySelectorAll<HTMLButtonElement>('.chat-opt-btn').forEach(opt => {
@@ -445,11 +510,7 @@ function initChatbot() {
       const rec = RECOMENDACIONES[key];
       if (!rec) return;
       pushMsg(opt.innerText, 'user');
-      setTimeout(() => {
-        pushMsg(rec.intro, 'bot');
-        pushProductos(rec.ids);
-        setTimeout(() => pushMsg(rec.cierre, 'bot'), 400);
-      }, 700);
+      setTimeout(() => pushRecomendacion(rec), 700);
     });
   });
 }

@@ -24,7 +24,7 @@ const BENEFICIOS: Record<Producto['categoria'], string[]> = {
   tradicionales: ['Sabor rústico tradicional', 'Fuente de energía natural', 'Maíz pelado 100% natural'],
 };
 
-type ProductoBase = Omit<Producto, 'beneficios'>;
+type ProductoBase = Omit<Producto, 'beneficios'> & { beneficios?: string[] };
 
 const BASE: ProductoBase[] = [
   {
@@ -170,9 +170,25 @@ const BASE: ProductoBase[] = [
     preparacion: 'Dorar a la plancha a fuego medio.',
     ocasiones: ['fit', 'asado'],
   },
+  {
+    id: 'pelado-queso',
+    nombre: 'Arepas de Maíz Pelado Rellenas de Queso',
+    origen: 'Región Santandereana',
+    descripcionB2C: 'Maíz pelado tradicional relleno con una generosa porción de queso que se funde al asarlo. Combina la fácil digestión del maíz pelado con la proteína y el calcio del queso.',
+    descripcionB2B: 'Diferenciador premium de maíz pelado y queso para desayunaderos y menús criollos.',
+    unidades: 5, precio: 6500, categoria: 'tradicionales', sku: 'PR-PEL-RQ5',
+    caja: '25 paquetes', vidaUtil: '12 días', alergenos: 'Lácteos',
+    preparacion: 'Asar a fuego lento tapadas para un óptimo derretido del queso.',
+    beneficios: [
+      'Combina la fácil digestión del maíz pelado con la proteína y calcio del queso',
+      'Maíz pelado 100% natural',
+      'Queso campesino fresco que se funde al asarla',
+    ],
+    ocasiones: ['desayuno', 'merienda'],
+  },
 ];
 
-export const PRODUCTOS: Producto[] = BASE.map(p => ({ ...p, beneficios: BENEFICIOS[p.categoria] }));
+export const PRODUCTOS: Producto[] = BASE.map(p => ({ ...p, beneficios: p.beneficios ?? BENEFICIOS[p.categoria] }));
 
 export const imagenDe = (p: Pick<Producto, 'categoria'>) =>
   p.categoria === 'queso' ? '/imagen%202.png' : '/imagen%201.png';

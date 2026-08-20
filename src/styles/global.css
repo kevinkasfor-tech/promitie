@@ -1053,6 +1053,25 @@ section {
   color: var(--color-white);
 }
 
+/* Chatbot — ajustes de escritorio (anclado abajo a la derecha) */
+@media (min-width: 769px) {
+  .chatbot-widget {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .chatbot-box {
+    bottom: 84px;
+    right: 0;
+    width: 390px;
+    max-height: min(560px, 70vh);
+  }
+
+  .chatbot-messages {
+    height: 300px;
+  }
+}
+
 /* Carrito Drawer */
 .cart-drawer {
   position: fixed;

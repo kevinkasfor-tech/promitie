@@ -31,14 +31,14 @@
   .process-line { left: 12px; transform: none; }
 }
 
-/* ---------- Chatbot: tarjetas de producto recomendado ---------- */
+/* ---------- Chatbot: pedido recomendado (arepas + unidades + datos) ---------- */
 .chat-products {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.25rem 0;
 }
-.chat-product-chip {
+.chat-product-row {
   display: flex;
   align-items: center;
   gap: 0.65rem;
@@ -46,25 +46,26 @@
   background: var(--color-white);
   border: 1px solid rgba(42, 29, 23, 0.1);
   border-radius: var(--radius-card);
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  transition: var(--transition-smooth);
   box-shadow: var(--shadow-warm);
 }
-.chat-product-chip:hover {
-  transform: translateX(4px);
+.chat-product-row:hover {
   border-color: var(--color-gold);
 }
-.chat-product-chip img {
+.chat-product-row img {
   width: 42px;
   height: 42px;
   border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
 }
-.chat-product-name {
+.chat-product-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.chat-product-name {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-text);
@@ -75,6 +76,101 @@
   font-weight: 700;
   color: var(--color-red);
   white-space: nowrap;
+}
+.chat-qty-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+.chat-qty-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--color-red);
+  background-color: transparent;
+  color: var(--color-red);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+.chat-qty-btn:hover {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+.chat-qty-val {
+  min-width: 22px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.chat-order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--color-bg);
+  border: 1px solid rgba(42, 29, 23, 0.08);
+  border-radius: var(--radius-card);
+}
+.chat-order-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+.chat-order-input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(42, 29, 23, 0.2);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  background-color: var(--color-white);
+  transition: var(--transition-smooth);
+}
+.chat-order-input:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(214, 47, 47, 0.15);
+}
+.chat-order-input.chat-order-error {
+  border-color: var(--color-red);
+  background-color: rgba(214, 47, 47, 0.06);
+}
+.chat-order-total {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: right;
+}
+.chat-order-total-value {
+  color: var(--color-red);
+}
+.chat-order-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: #25D366;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.chat-order-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-strong);
 }
 
 /* ---------- Ajustes responsive extra ---------- */
@@ -93,7 +189,7 @@
 }
 
 @media (max-width: 480px) {
-  .chat-product-chip img { width: 36px; height: 36px; }
+  .chat-product-row img { width: 36px; height: 36px; }
   .chat-product-name { font-size: 0.75rem; }
 }
 
