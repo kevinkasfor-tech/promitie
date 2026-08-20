@@ -404,9 +404,21 @@ function initChatbot() {
   const btn = $('#chatbot-toggle');
   const box = $('#chatbot-box');
   const optionsContainer = $('#chatbot-options');
+  const optionsToggle = $('#chatbot-options-toggle');
   const messages = $('#chatbot-messages');
 
   btn.addEventListener('click', () => box.classList.toggle('open'));
+
+  const toggleOptions = (collapsed: boolean) => {
+    box.classList.toggle('options-collapsed', collapsed);
+    optionsContainer.classList.toggle('collapsed', collapsed);
+    optionsToggle.setAttribute('aria-expanded', String(!collapsed));
+    messages.scrollTop = messages.scrollHeight;
+  };
+
+  optionsToggle.addEventListener('click', () => {
+    toggleOptions(!box.classList.contains('options-collapsed'));
+  });
 
   const pushMsg = (text: string, who: 'bot' | 'user') => {
     const el = document.createElement('div');
@@ -510,6 +522,7 @@ function initChatbot() {
       const rec = RECOMENDACIONES[key];
       if (!rec) return;
       pushMsg(opt.innerText, 'user');
+      toggleOptions(true);
       setTimeout(() => pushRecomendacion(rec), 700);
     });
   });

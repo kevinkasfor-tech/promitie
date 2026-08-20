@@ -1053,6 +1053,47 @@ section {
   color: var(--color-white);
 }
 
+.chatbot-options-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-top: 1px solid rgba(42, 29, 23, 0.08);
+  background: transparent;
+  color: var(--color-text-sec);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.chatbot-options-toggle:hover {
+  color: var(--color-red);
+  background-color: var(--color-bg);
+}
+
+.chatbot-options-toggle .chatbot-options-chevron {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.chatbot-box.options-collapsed .chatbot-options {
+  display: none;
+}
+
+.chatbot-box.options-collapsed .chatbot-options-toggle .chatbot-options-chevron {
+  transform: rotate(180deg);
+}
+
+.chatbot-box.options-collapsed .chatbot-messages {
+  flex: 1;
+  height: auto;
+  min-height: 220px;
+}
+
 /* Chatbot — ajustes de escritorio (anclado abajo a la derecha) */
 @media (min-width: 769px) {
   .chatbot-widget {
