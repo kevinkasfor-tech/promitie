@@ -1,10 +1,13 @@
 ---
-// Hero con video responsive (desktop horizontal / móvil vertical)
+// Hero con video principal: prom.webm (nuevo)
+// En móvil: vertical promitie.webm
 ---
 <section id="inicio" class="hero">
+  <!-- Video principal del hero: prom.webm -->
   <video autoplay muted loop playsinline class="hero-video-bg hero-video-desktop" aria-hidden="true">
-    <source src="/promi.webm" type="video/webm" />
+    <source src="/prom.webm" type="video/webm" />
   </video>
+  <!-- Video móvil (vertical) -->
   <video autoplay muted loop playsinline class="hero-video-bg hero-video-mobile" aria-hidden="true">
     <source src="/vertical%20promitie.webm" type="video/webm" />
   </video>
@@ -13,7 +16,7 @@
   <div class="hero-content">
     <span class="handwritten" style="color: var(--color-gold); font-size: 2.2rem;">Hechas con Amor de Hogar</span>
     <h1>Arepas tradicionales colombianas para <span class="signature-underline">cada mesa</span> y cada negocio</h1>
-    <p>Sabores regionales elaborados para un desayuno memorable y formatos prácticos para restaurantes, cafeterías, hoteles y distribuidores.</p>
+    <p>Sabores regionales elaborados — <em>productos de mi tierra</em> — para un desayuno memorable y formatos prácticos para restaurantes, cafeterías, hoteles y distribuidores.</p>
 
     <div class="hero-ctas">
       <a href="#catalogo" class="btn btn-primary">Quiero probar las arepas</a>
@@ -29,3 +32,10 @@
     </svg>
   </a>
 </section>
+
+<style>
+  /* Video al natural — sin filtros de color */
+  .hero-video-desktop {
+    opacity: 1;
+  }
+</style>

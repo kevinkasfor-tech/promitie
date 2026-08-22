@@ -2,28 +2,36 @@
 // Catálogo interactivo B2C/B2B — el grid lo puebla main.ts desde PRODUCTOS
 ---
 <section id="catalogo" class="catalog-section">
-  <div class="section-container">
-    <div class="section-header" data-reveal>
-      <span class="caption">NUESTRO PORTAFOLIO</span>
-      <h2>Descubre el Auténtico Sabor</h2>
-      <p>Elige tu perfil de compra para ver las opciones a tu medida.</p>
-    </div>
+  <!-- Zona con imagen de fondo: título + toggles + filtros -->
+  <div class="catalog-hero-zone">
+    <div class="catalog-hero-overlay"></div>
+    <div class="section-container catalog-hero-content">
+      <div class="section-header" data-reveal>
+        <span class="caption">NUESTRO PORTAFOLIO</span>
+        <h2>Descubre el Auténtico Sabor</h2>
+        <p>Elige tu perfil de compra para ver las opciones a tu medida.</p>
+      </div>
 
-    <div class="catalog-toggle-wrapper">
-      <div class="catalog-toggle" role="tablist" aria-label="Modo de compra">
-        <button id="toggle-b2c" class="toggle-btn active" role="tab" aria-selected="true">Consumidor (B2C)</button>
-        <button id="toggle-b2b" class="toggle-btn" role="tab" aria-selected="false">Aliado Comercial (B2B)</button>
+      <div class="catalog-toggle-wrapper">
+        <div class="catalog-toggle" role="tablist" aria-label="Modo de compra">
+          <button id="toggle-b2c" class="toggle-btn active" role="tab" aria-selected="true">Consumidor (B2C)</button>
+          <button id="toggle-b2b" class="toggle-btn" role="tab" aria-selected="false">Aliado Comercial (B2B)</button>
+        </div>
+      </div>
+
+      <div class="catalog-filters" role="tablist" aria-label="Filtrar por categoría">
+        <button class="filter-chip active" data-category="todos">Todos</button>
+        <button class="filter-chip" data-category="clasicas">Clásicas Paisas</button>
+        <button class="filter-chip" data-category="saludables">Saludables Fit</button>
+        <button class="filter-chip" data-category="queso">Con Queso</button>
+        <button class="filter-chip" data-category="tradicionales">Maíz Pelado</button>
       </div>
     </div>
+  </div>
 
-    <div class="catalog-filters" role="tablist" aria-label="Filtrar por categoría">
-      <button class="filter-chip active" data-category="todos">Todos</button>
-      <button class="filter-chip" data-category="clasicas">Clásicas Paisas</button>
-      <button class="filter-chip" data-category="saludables">Saludables Fit</button>
-      <button class="filter-chip" data-category="queso">Con Queso</button>
-      <button class="filter-chip" data-category="tradicionales">Maíz Pelado</button>
-    </div>
-
+  <!-- Grid de productos -->
+  <div class="section-container catalog-grid-zone">
     <div class="products-grid" id="products-grid" aria-live="polite"><!-- Generado dinámicamente con JS --></div>
   </div>
 </section>
+

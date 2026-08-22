@@ -2,7 +2,7 @@
    PROMITIE — Lógica principal (catálogo, carrito persistente,
    chatbot recomendador por ocasión, formulario, navegación)
    ============================================================ */
-import { PRODUCTOS, imagenDe, COP, WHATSAPP_NUMERO } from '../data/productos';
+import { PRODUCTOS, imagenDe, COP, WHATSAPP_NUMERO, IMAGE_POOL } from '../data/productos';
 import type { Producto } from '../data/productos';
 
 type Modo = 'b2c' | 'b2b';
@@ -12,6 +12,9 @@ let activeFilter = 'todos';
 interface ItemCarrito extends Producto { qty: number }
 const CART_KEY = 'promitie-cart-v1';
 let carrito: ItemCarrito[] = cargarCarrito();
+
+// Registro de carruseles activos (productId -> intervalId)
+const carouselIntervals = new Map<string, ReturnType<typeof setInterval>>();
 
 function cargarCarrito(): ItemCarrito[] {
   try {
@@ -114,6 +117,10 @@ function initCatalogToggles() {
 }
 
 function renderCatalog() {
+  // Detener todos los carruseles activos antes de limpiar el DOM
+  carouselIntervals.forEach(id => clearInterval(id));
+  carouselIntervals.clear();
+
   const grid = $('#products-grid');
   grid.innerHTML = '';
 
@@ -124,11 +131,35 @@ function renderCatalog() {
     card.className = 'product-card';
     card.dataset.prodId = prod.id;
 
+    // Mezcla aleatoria del pool de imágenes para este producto
+    const shuffled = [...IMAGE_POOL].sort(() => Math.random() - 0.5);
+    const slides = shuffled.slice(0, Math.min(5, shuffled.length));
+
+    // Info que rota con las imágenes (badge sobre la imagen)
+    const infoBadges = [
+      `📦 Paquete x ${prod.unidades} uds`,
+      `✨ ${prod.beneficios[0]}`,
+      prod.beneficios[1] ? `🌾 ${prod.beneficios[1]}` : `📍 ${prod.origen}`,
+      `⏳ ${prod.vidaUtil}`,
+      `🍳 ${prod.preparacion}`,
+    ];
+
+    const slidesHTML = slides.map((src, i) => `
+      <div class="pcarousel-slide${i === 0 ? ' active' : ''}">
+        <img src="${src}" alt="${prod.nombre}" loading="${i === 0 ? 'eager' : 'lazy'}">
+        <div class="pcarousel-badge">${infoBadges[i % infoBadges.length]}</div>
+      </div>`).join('');
+
+    const dotsHTML = slides.map((_, i) =>
+      `<span class="pcarousel-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></span>`
+    ).join('');
+
     if (activeMode === 'b2c') {
       card.innerHTML = `
-        <div class="prod-img-wrapper open-modal-trigger" data-id="${prod.id}" style="cursor:pointer" title="Ver detalles">
-          <img src="${imagenDe(prod)}" alt="${prod.nombre}" loading="lazy">
-          <span class="prod-region-badge">${prod.origen}</span>
+        <div class="pcarousel-wrapper open-modal-trigger" data-id="${prod.id}" title="Ver detalles">
+          <div class="pcarousel-track">${slidesHTML}</div>
+          <div class="pcarousel-dots">${dotsHTML}</div>
+          <span class="prod-region-badge pcarousel-region">${prod.origen}</span>
         </div>
         <div class="prod-info">
           <h3 class="prod-title">${prod.nombre}</h3>
@@ -148,16 +179,17 @@ function renderCatalog() {
         </div>`;
     } else {
       card.innerHTML = `
-        <div class="prod-img-wrapper open-modal-trigger" data-id="${prod.id}" style="cursor:pointer" title="Ver detalles">
-          <img src="${imagenDe(prod)}" alt="${prod.nombre}" loading="lazy">
-          <span class="prod-region-badge" style="background-color: var(--color-blue);">${prod.sku}</span>
+        <div class="pcarousel-wrapper open-modal-trigger" data-id="${prod.id}" title="Ver detalles">
+          <div class="pcarousel-track">${slidesHTML}</div>
+          <div class="pcarousel-dots">${dotsHTML}</div>
+          <span class="prod-region-badge pcarousel-region" style="background-color: var(--color-blue);">${prod.sku}</span>
         </div>
         <div class="prod-info">
           <h3 class="prod-title" style="color: var(--color-blue);">${prod.nombre} B2B</h3>
           <p class="prod-desc">${prod.descripcionB2B}</p>
           <div class="b2b-specs">
             <div class="b2b-spec-row"><span class="b2b-spec-label">Embalaje:</span><span>Caja x ${prod.caja}</span></div>
-            <div class="b2b-spec-row"><span class="b2b-spec-label">Vida Útil:</span><span>${prod.vidaUtil}</span></div>
+            <div class="b2b-spec-row"><span class="b2b-spec-label">Vida útil:</span><span>${prod.vidaUtil}</span></div>
             <div class="b2b-spec-row"><span class="b2b-spec-label">Alérgenos:</span><span>${prod.alergenos}</span></div>
             <div class="b2b-spec-row"><span class="b2b-spec-label">Uso Sugerido:</span><span>HORECA / Canal Mayorista</span></div>
           </div>
@@ -167,7 +199,7 @@ function renderCatalog() {
     grid.appendChild(card);
   });
 
-  // Entrada animada de las tarjetas (respeta reduced-motion)
+  // Animación de entrada (respeta reduced-motion)
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     grid.querySelectorAll('.product-card').forEach((c, i) => {
       (c as HTMLElement).animate(
@@ -177,7 +209,56 @@ function renderCatalog() {
     });
   }
 
+  // Iniciar carruseles automáticos
+  grid.querySelectorAll<HTMLElement>('.product-card').forEach(card => {
+    const prodId = card.dataset.prodId!;
+    initCarousel(card, prodId);
+  });
+
   activeMode === 'b2c' ? bindB2CEvents() : bindB2BEvents();
+}
+
+function initCarousel(card: HTMLElement, prodId: string) {
+  const track = card.querySelector<HTMLElement>('.pcarousel-track');
+  const dots = card.querySelectorAll<HTMLElement>('.pcarousel-dot');
+  if (!track) return;
+
+  const slides = track.querySelectorAll<HTMLElement>('.pcarousel-slide');
+  const total = slides.length;
+  if (total <= 1) return;
+
+  let current = 0;
+
+  const goTo = (idx: number) => {
+    slides[current].classList.remove('active');
+    dots[current]?.classList.remove('active');
+    current = (idx + total) % total;
+    slides[current].classList.add('active');
+    dots[current]?.classList.add('active');
+  };
+
+  // Click en dots para navegación manual
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', e => {
+      e.stopPropagation();
+      goTo(i);
+      // Reiniciar el timer al navegar manualmente
+      clearInterval(carouselIntervals.get(prodId));
+      const newId = setInterval(() => goTo(current + 1), 2800);
+      carouselIntervals.set(prodId, newId);
+    });
+  });
+
+  // Auto-rotación aleatoria: elige un orden aleatorio de slides
+  const order = Array.from({ length: total }, (_, i) => i).sort(() => Math.random() - 0.5);
+  let orderIdx = 0;
+
+  const intervalId = setInterval(() => {
+    orderIdx = (orderIdx + 1) % order.length;
+    goTo(order[orderIdx]);
+  }, 2600 + Math.random() * 800); // intervalo con variación aleatoria
+
+  carouselIntervals.set(prodId, intervalId);
 }
 
 function bindB2CEvents() {

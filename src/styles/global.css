@@ -237,7 +237,7 @@ header.scrolled #open-cart-btn {
   opacity: 1;
 }
 
-/* El overlay ahora actúa como el tono oscuro principal */
+/* Overlay mínimo: solo oscurece ligeramente el lado izquierdo para legibilidad del texto */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -245,10 +245,10 @@ header.scrolled #open-cart-btn {
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    135deg,
-    rgba(20, 10, 5, 0.3) 0%,
-    rgba(30, 58, 95, 0.2) 60%,
-    rgba(20, 10, 5, 0.4) 100%
+    to right,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.0) 100%
   );
   z-index: 2;
 }
@@ -459,7 +459,109 @@ section {
 /* Catálogo */
 .catalog-section {
   background-color: var(--color-white);
+  padding: 0; /* El padding lo maneja catalog-hero-zone y catalog-grid-zone */
 }
+
+/* ── Zona hero del catálogo: título + toggles + filtros con fondo.webp ── */
+.catalog-hero-zone {
+  position: relative;
+  background-image: url('/fondo.webp');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: local;
+  padding: 6rem 1.5rem 5rem;
+  overflow: hidden;
+}
+
+/* Overlay oscuro semitransparente sobre la imagen */
+.catalog-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 10, 5, 0.72) 0%,
+    rgba(30, 15, 5, 0.80) 60%,
+    rgba(20, 10, 5, 0.88) 100%
+  );
+  z-index: 0;
+}
+
+/* Contenido sobre el overlay */
+.catalog-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Texto del header sobre la imagen → blanco */
+.catalog-hero-zone .section-header h2 {
+  color: var(--color-white);
+}
+
+.catalog-hero-zone .section-header p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.catalog-hero-zone .caption {
+  color: var(--color-gold);
+}
+
+/* Toggle B2C/B2B sobre la imagen: estilo glassmorphism */
+.catalog-hero-zone .catalog-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.catalog-hero-zone .toggle-btn {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.catalog-hero-zone .toggle-btn.active {
+  background-color: var(--color-white);
+  color: var(--color-text);
+}
+
+.catalog-hero-zone .toggle-btn.active.b2b-mode {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}
+
+/* Filter chips sobre la imagen: glassmorphism */
+.catalog-hero-zone .filter-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.catalog-hero-zone .filter-chip:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.catalog-hero-zone .filter-chip.active {
+  background-color: var(--color-red);
+  border-color: var(--color-red);
+  color: var(--color-white);
+}
+
+/* Quitar el margin-bottom del wrapper de toggle dentro de la zona hero */
+.catalog-hero-zone .catalog-toggle-wrapper {
+  margin-bottom: 2rem;
+}
+
+/* Quitar el margin-bottom de los filtros dentro de la zona hero */
+.catalog-hero-zone .catalog-filters {
+  margin-bottom: 0;
+}
+
+/* Zona del grid de productos: padding normal */
+.catalog-grid-zone {
+  padding: 4rem 1.5rem;
+}
+
 
 .catalog-toggle-wrapper {
   display: flex;
@@ -576,6 +678,156 @@ section {
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 600;
+}
+
+/* =============================================
+   CARRUSEL VIEJO OESTE — Portafolio de Arepas
+   ============================================= */
+
+/* Contenedor principal del carrusel (reemplaza prod-img-wrapper) */
+.pcarousel-wrapper {
+  position: relative;
+  aspect-ratio: 1.2;
+  background-color: var(--color-bg-sec);
+  overflow: hidden;
+  cursor: pointer;
+  /* Borde estilo pergamino / viejo oeste */
+  border-bottom: 3px solid rgba(139, 90, 43, 0.35);
+}
+
+/* Efecto textura envejecida encima del carrusel */
+.pcarousel-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.02) 2px,
+      rgba(0,0,0,0.02) 4px
+    );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Track: contiene todos los slides apilados */
+.pcarousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cada slide ocupa el 100% y se oculta por defecto */
+.pcarousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pcarousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.pcarousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 6s ease-out;
+}
+
+/* Leve zoom en el slide activo — efecto Ken Burns */
+.pcarousel-slide.active img {
+  transform: scale(1.06);
+}
+
+/* Badge inferior con info del producto (rota con cada imagen) */
+.pcarousel-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  /* Gradiente sepia/tierra estilo viejo oeste */
+  background: linear-gradient(
+    to top,
+    rgba(60, 35, 10, 0.92) 0%,
+    rgba(60, 35, 10, 0.6) 70%,
+    transparent 100%
+  );
+  z-index: 3;
+  /* Tipografía con sabor western */
+  font-family: 'Georgia', 'Times New Roman', serif;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.pcarousel-slide.active .pcarousel-badge {
+  opacity: 1;
+  transition-delay: 0.3s;
+}
+
+/* Badge de región (top-right) */
+.pcarousel-region {
+  z-index: 4;
+}
+
+/* Puntos de navegación */
+.pcarousel-dots {
+  position: absolute;
+  bottom: 0.55rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+}
+
+.pcarousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: inline-block;
+}
+
+.pcarousel-dot.active {
+  background-color: var(--color-gold);
+  transform: scale(1.35);
+}
+
+/* Hover: muestra flecha sutil de "Ver detalles" */
+.pcarousel-wrapper:hover::after {
+  content: '🔍 Ver detalles';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(60, 35, 10, 0.82);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  letter-spacing: 0.05em;
+  z-index: 6;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Zoom suave en hover */
+.product-card:hover .pcarousel-slide.active img {
+  transform: scale(1.1);
 }
 
 .prod-info {

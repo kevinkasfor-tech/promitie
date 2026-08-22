@@ -17,6 +17,20 @@ export interface Producto {
   ocasiones: string[]; // usado por el chatbot recomendador
 }
 
+// Pool de imágenes compartido — rotan en todos los productos del carrusel
+export const IMAGE_POOL: string[] = [
+  '/imagen%201.png',
+  '/imagen%202.png',
+  '/arepas.webp',
+  '/promitie.webp',
+  '/289cfb4d-62d7-4dbb-90a7-319e73f5c6a8.webp',
+  '/32168c57-017b-4451-bcfa-85c8ab89449e.jpg',
+  '/47facfb4-56ee-483c-a5c4-af8f284ca364.webp',
+  '/5c43ee79-d05a-432d-836b-acbbb6e1a29c.webp',
+  '/aee02a5b-b62a-4768-8def-d5f829d1a13c.webp',
+  '/f61b1bb8-5c9e-4a33-a12b-e595d87902cc%20(1).webp',
+];
+
 const BENEFICIOS: Record<Producto['categoria'], string[]> = {
   clasicas: ['Fuente de energía natural', 'Ideal para una dieta equilibrada', 'Sin conservantes artificiales'],
   saludables: ['Alto contenido en fibra', 'Aporta minerales esenciales', 'Ayuda a la digestión'],
@@ -190,8 +204,8 @@ const BASE: ProductoBase[] = [
 
 export const PRODUCTOS: Producto[] = BASE.map(p => ({ ...p, beneficios: p.beneficios ?? BENEFICIOS[p.categoria] }));
 
-export const imagenDe = (p: Pick<Producto, 'categoria'>) =>
-  p.categoria === 'queso' ? '/imagen%202.png' : '/imagen%201.png';
+// imagenDe mantiene compatibilidad con carrito, modal y chatbot
+export const imagenDe = (_p: Pick<Producto, 'categoria'>) => IMAGE_POOL[0];
 
 export const COP = (n: number) => `$${n.toLocaleString('es-CO')} Cop`;
 
