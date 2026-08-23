@@ -3,7 +3,7 @@ const RECETAS = [
   {
     img: '/47facfb4-56ee-483c-a5c4-af8f284ca364.webp',
     alt: 'Arepa con Queso y Hogao',
-    tags: ['Desayuno', 'Fácil'],
+    tags: ['Desayuno', 'Fácil y rápido'],
     titulo: 'Arepa con Queso Campesino y Hogao Casero',
     ingredientes: 'Arepa Paisa Grande, queso rallado, tomate picado, cebolla, ajo y mantequilla.',
   },
@@ -17,7 +17,7 @@ const RECETAS = [
   {
     img: '/5c43ee79-d05a-432d-836b-acbbb6e1a29c.webp',
     alt: 'Arepa fit con Huevo Poché',
-    tags: ['Fit', 'Saludable'],
+    tags: ['Desayuno', 'Saludable'],
     titulo: 'Arepa de Multigranos con Huevo Poché',
     ingredientes: 'Arepa con Chía o Multigranos, huevos poché, espinacas salteadas y aguacate.',
   },
@@ -31,14 +31,14 @@ const RECETAS = [
   {
     img: '/32168c57-017b-4451-bcfa-85c8ab89449e.jpg',
     alt: 'Arepa de Quinoa con Salmón',
-    tags: ['Gourmet', 'Fit'],
+    tags: ['Cena', 'Fácil y rápido'],
     titulo: 'Arepa de Quinoa con Salmón Ahumado',
     ingredientes: 'Arepa de Maíz Peto con Quinoa, salmón ahumado, queso crema, alcaparras y eneldo.',
   },
   {
     img: '/f61b1bb8-5c9e-4a33-a12b-e595d87902cc%20(1).webp',
     alt: 'Arepa Rellena de Queso con Mermelada',
-    tags: ['Merienda', 'Dulce'],
+    tags: ['Fácil y rápido', 'Dulce'],
     titulo: 'Arepa Rellena de Queso con Mermelada de Mora',
     ingredientes: 'Arepa Rellena de Queso Dulce, mermelada de mora artesanal y panela rallada.',
   },
@@ -52,9 +52,17 @@ const RECETAS = [
       <p>Aprende a preparar platos deliciosos usando nuestras arepas como base.</p>
     </div>
 
+    <div class="recipe-filters" data-reveal>
+      <button class="filter-btn active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="desayuno">Desayuno</button>
+      <button class="filter-btn" data-filter="almuerzo">Almuerzo</button>
+      <button class="filter-btn" data-filter="cena">Cena</button>
+      <button class="filter-btn" data-filter="fácil y rápido">Fácil y rápido</button>
+    </div>
+
     <div class="recipes-grid">
       {RECETAS.map(r => (
-        <article class="recipe-card" data-reveal>
+        <article class="recipe-card" data-tags={r.tags.join(',').toLowerCase()} data-reveal>
           <div class="recipe-img-wrapper">
             <img src={r.img} alt={r.alt} loading="lazy" />
           </div>
@@ -70,3 +78,79 @@ const RECETAS = [
     </div>
   </div>
 </section>
+
+<style>
+  .recipe-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .filter-btn {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--accent, #e59c24);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--accent, #e59c24);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--accent, #e59c24);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .recipes-grid {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1.5rem;
+      padding-bottom: 1.5rem;
+      scrollbar-width: none; /* Firefox */
+      margin: 0 -1rem; /* Negative margin to span full width on mobile if container has padding */
+      padding: 0 1rem 1.5rem 1rem;
+    }
+    .recipes-grid::-webkit-scrollbar {
+      display: none; /* Safari/Chrome */
+    }
+    .recipe-card {
+      min-width: 85%;
+      scroll-snap-align: center;
+      flex-shrink: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const recipeCards = document.querySelectorAll('.recipe-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter.toLowerCase();
+
+        recipeCards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'block';
+          } else {
+            const tags = card.dataset.tags || '';
+            if (tags.includes(filter)) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  });
+</script>

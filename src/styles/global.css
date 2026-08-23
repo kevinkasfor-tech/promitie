@@ -1245,9 +1245,6 @@ section {
 .chatbot-avatar {
   width: 35px;
   height: 35px;
-  border-radius: 50%;
-  background-color: var(--color-white);
-  padding: 2px;
 }
 
 .chatbot-messages {
