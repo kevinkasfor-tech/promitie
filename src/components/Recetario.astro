@@ -119,9 +119,22 @@ const RECETAS = [
       display: none; /* Safari/Chrome */
     }
     .recipe-card {
-      min-width: 85%;
+      min-width: 70%;
       scroll-snap-align: center;
       flex-shrink: 0;
+    }
+    
+    /* Ajustes para que no se vea tan sobredimensionado en celular */
+    .recipe-card :global(.recipe-info) {
+      padding: 1.2rem;
+    }
+    .recipe-card :global(.recipe-title) {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .recipe-card :global(.recipe-ingredients-preview) {
+      font-size: 0.85rem;
+      margin-bottom: 0;
     }
   }
 </style>
