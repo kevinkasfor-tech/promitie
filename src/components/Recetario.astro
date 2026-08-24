@@ -206,6 +206,7 @@ const RECETAS = [
             </div>
             <h3 class="recipe-title">{r.titulo}</h3>
             <p class="recipe-ingredients-preview">{r.ingredientes}</p>
+            <div class="recipe-card-hint">Ver receta completa &rarr;</div>
           </div>
         </article>
       ))}
@@ -279,6 +280,20 @@ const RECETAS = [
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.02em;
+  }
+  
+  /* Hint texto estático al final de la tarjeta */
+  .recipe-card-hint {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-gold, #e8a400);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  .recipe-card:hover .recipe-card-hint {
+    transform: translateX(5px);
   }
 
   /* ── Modal backdrop ── */
