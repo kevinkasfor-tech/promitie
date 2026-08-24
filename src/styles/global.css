@@ -2115,10 +2115,15 @@ header.scrolled .hamburger-btn span {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
     gap: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0 1rem 0.5rem 1rem;
     scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .catalog-filters::-webkit-scrollbar {
+    display: none;
   }
 
   .filter-chip {
