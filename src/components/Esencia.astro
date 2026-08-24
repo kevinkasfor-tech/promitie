@@ -11,20 +11,57 @@
 
     <div class="grid-3">
       <div class="essence-card" data-reveal>
-        <div class="icon" style="color: var(--color-red);"><i class="fa-solid fa-seedling"></i></div>
+        <div class="image-preloader">
+          <img src="/tradicion.webp" alt="Tradición e Inocuidad" loading="lazy" onload="this.classList.add('loaded')" />
+        </div>
         <h3>Tradición e Inocuidad</h3>
         <p>Maíz 100% colombiano seleccionado grano a grano, sin conservantes masivos. Calidad y frescura del campo a tu plato.</p>
       </div>
       <div class="essence-card" data-reveal>
-        <div class="icon" style="color: var(--color-gold);"><i class="fa-solid fa-gears"></i></div>
+        <div class="image-preloader">
+          <img src="/tecnologia.webp" alt="Tecnología Gastronómica" loading="lazy" onload="this.classList.add('loaded')" />
+        </div>
         <h3>Tecnología Gastronómica</h3>
         <p>Procesos automatizados e innovadores que garantizan la estandarización del tamaño, peso y textura de nuestras arepas.</p>
       </div>
       <div class="essence-card" data-reveal>
-        <div class="icon" style="color: var(--color-green);"><i class="fa-solid fa-handshake"></i></div>
+        <div class="image-preloader">
+          <img src="/compromiso.webp" alt="Compromiso Local" loading="lazy" onload="this.classList.add('loaded')" />
+        </div>
         <h3>Compromiso Local</h3>
         <p>Generación de empleo justo y precios accesibles en Bogotá, apoyando el crecimiento de comercios y distribuidores locales.</p>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .image-preloader {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .image-preloader img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .image-preloader img.loaded {
+    opacity: 1;
+  }
+</style>
