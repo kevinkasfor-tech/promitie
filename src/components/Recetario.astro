@@ -6,6 +6,28 @@ const RECETAS = [
     tags: ['Desayuno', 'Fácil y rápido'],
     titulo: 'Arepa con Queso Campesino y Hogao Casero',
     ingredientes: 'Arepa Paisa Grande, queso rallado, tomate picado, cebolla, ajo y mantequilla.',
+    porciones: '2 porciones',
+    tiempo: '20 min',
+    dificultad: 'Fácil',
+    emoji: '🧀',
+    ingredientesDetalle: [
+      '2 Arepas Paisa Grande (Promitie)',
+      '150 g de queso campesino rallado',
+      '2 tomates maduros, picados en cubos',
+      '1 cebolla larga, picada finamente',
+      '2 dientes de ajo, picados',
+      '2 cucharadas de mantequilla',
+      '½ cdta de sal',
+      '¼ cdta de comino en polvo',
+    ],
+    pasos: [
+      { num: '01', titulo: 'Preparar el hogao', desc: 'Derrite la mantequilla a fuego medio y sofríe la cebolla y el ajo hasta que estén transparentes, unos 3 minutos.' },
+      { num: '02', titulo: 'Cocinar el tomate', desc: 'Agrega el tomate, la sal y el comino. Cocina a fuego medio-bajo removiendo hasta que forme una salsa espesa (10 min).' },
+      { num: '03', titulo: 'Calentar las arepas', desc: 'Tuesta las arepas en sartén o comal hasta que estén doradas por ambos lados (5 min).' },
+      { num: '04', titulo: 'Rellenar con queso', desc: 'Abre cada arepa ligeramente por el centro y rellena con el queso campesino.' },
+      { num: '05', titulo: 'Servir', desc: 'Corona cada arepa con una buena cucharada de hogao caliente y sirve de inmediato.' },
+    ],
+    nota: 'Para que el queso quede bien derretido, cierra la arepa rellena y ponla unos minutos más en el sartén tapado.',
   },
   {
     img: '/imagen%202.png',
@@ -13,6 +35,30 @@ const RECETAS = [
     tags: ['Almuerzo', 'Tradicional'],
     titulo: 'Arepa Rústica con Carne Desmechada',
     ingredientes: 'Arepa de Maíz Pelado, carne falda de res desmechada, aguacate y cilantro fresco.',
+    porciones: '4 porciones',
+    tiempo: '1h 45 min',
+    dificultad: 'Media',
+    emoji: '🥩',
+    ingredientesDetalle: [
+      '4 Arepas de Maíz Pelado (Promitie)',
+      '600 g de falda de res',
+      '1 cebolla cabezona, en trozos',
+      '3 dientes de ajo',
+      '4 tallos de cilantro',
+      '1 hoja de laurel',
+      '1 cdta de sal',
+      '2 aguacates maduros, en tajadas',
+      '3 cdas de cilantro fresco picado',
+      '2 cdas de aceite vegetal',
+    ],
+    pasos: [
+      { num: '01', titulo: 'Cocinar la carne', desc: 'En una olla, cubre la falda con agua, agrega cebolla, ajo, cilantro y laurel. Hierve y cocina tapado 1.5 horas.' },
+      { num: '02', titulo: 'Desmechar', desc: 'Retira la carne, reserva caldo, y desméchala en tiras finas con dos tenedores. Sazona con sal.' },
+      { num: '03', titulo: 'Dorar la carne', desc: 'Saltea la carne en sartén a fuego alto con un poco de caldo para que quede jugosa.' },
+      { num: '04', titulo: 'Calentar las arepas', desc: 'Tuesta las arepas en sartén o comal hasta dorar por ambos lados.' },
+      { num: '05', titulo: 'Armar y servir', desc: 'Abre cada arepa, rellena con carne desmechada, agrega tajadas de aguacate y espolvorea cilantro.' },
+    ],
+    nota: 'Puedes preparar la carne desmechada con anticipación y guardarla en nevera hasta 3 días.',
   },
   {
     img: '/imagen%203.webp',
@@ -20,6 +66,28 @@ const RECETAS = [
     tags: ['Desayuno', 'Saludable'],
     titulo: 'Arepa de Multigranos con Huevo Poché',
     ingredientes: 'Arepa con Chía o Multigranos, huevos poché, espinacas salteadas y aguacate.',
+    porciones: '2 porciones',
+    tiempo: '15 min',
+    dificultad: 'Media',
+    emoji: '🥑',
+    ingredientesDetalle: [
+      '2 Arepas con Chía o Multigranos (Promitie)',
+      '2 huevos grandes',
+      '1 cda de vinagre blanco',
+      '2 tazas de espinacas frescas',
+      '1 diente de ajo picado',
+      '1 cda de aceite de oliva',
+      '1 aguacate maduro, en tajadas',
+      '½ cdta de sal y pimienta al gusto',
+    ],
+    pasos: [
+      { num: '01', titulo: 'Saltear espinacas', desc: 'Calienta aceite de oliva, sofríe el ajo y agrega las espinacas. Saltea hasta marchitar. Sazona con sal y pimienta.' },
+      { num: '02', titulo: 'Calentar las arepas', desc: 'Tuesta las arepas en sartén o comal hasta que estén doradas por ambos lados.' },
+      { num: '03', titulo: 'Preparar agua para pochar', desc: 'Hierve agua suavemente y agrega el vinagre blanco.' },
+      { num: '04', titulo: 'Pochar los huevos', desc: 'Crea un remolino en el agua y desliza el huevo. Cocina 3 min hasta que la clara cuaje y la yema quede líquida.' },
+      { num: '05', titulo: 'Armar y servir', desc: 'Sobre cada arepa coloca espinacas, tajadas de aguacate y el huevo poché. Sazona con sal y pimienta.' },
+    ],
+    nota: 'Escurre bien el huevo poché antes de montarlo para evitar exceso de agua.',
   },
   {
     img: '/imagen%204.webp',
@@ -27,6 +95,30 @@ const RECETAS = [
     tags: ['Cena', 'Contundente'],
     titulo: 'Arepa Paisa Bola con Chicharrón y Guacamole',
     ingredientes: 'Arepa Paisa Bola, chicharrón crujiente, guacamole casero, hogao y crema de leche.',
+    porciones: '4 porciones',
+    tiempo: '45 min',
+    dificultad: 'Media',
+    emoji: '🔥',
+    ingredientesDetalle: [
+      '4 Arepas Paisa Bola (Promitie)',
+      '400 g de chicharrón de cerdo (panceta con cuero)',
+      '2 aguacates maduros',
+      '1 limón (jugo)',
+      '2 cdas de cebolla roja picada',
+      '2 cdas de cilantro fresco',
+      '1 tomate maduro picado',
+      '1 cebolla larga picada',
+      '1 diente de ajo picado',
+      '4 cdas de crema de leche',
+    ],
+    pasos: [
+      { num: '01', titulo: 'Cocinar el chicharrón', desc: 'Corta en trozos, sazona con sal y cocina en sartén a fuego medio-bajo sin aceite hasta dorado y crujiente (30 min).' },
+      { num: '02', titulo: 'Preparar el guacamole', desc: 'Machaca los aguacates con tenedor, mezcla con limón, cebolla roja y cilantro. Ajusta de sal.' },
+      { num: '03', titulo: 'Preparar el hogao', desc: 'Sofríe cebolla larga y ajo, agrega tomate y cocina hasta una salsa espesa.' },
+      { num: '04', titulo: 'Calentar las arepas', desc: 'Tuesta las arepas en sartén o comal hasta que doren por ambos lados.' },
+      { num: '05', titulo: 'Armar y servir', desc: 'Abre la arepa, rellena con chicharrón, guacamole, hogao y termina con crema de leche por encima.' },
+    ],
+    nota: 'El chicharrón queda más crujiente si lo cocinas tapado los primeros minutos y luego destapado hasta dorar.',
   },
   {
     img: '/imagen5.webp',
@@ -34,6 +126,28 @@ const RECETAS = [
     tags: ['Cena', 'Fácil y rápido'],
     titulo: 'Arepa de Quinoa con Salmón Ahumado',
     ingredientes: 'Arepa de Maíz Peto con Quinoa, salmón ahumado, queso crema, alcaparras y eneldo.',
+    porciones: '2 porciones',
+    tiempo: '10 min',
+    dificultad: 'Fácil',
+    emoji: '🐟',
+    ingredientesDetalle: [
+      '2 Arepas de Maíz Peto con Quinoa (Promitie)',
+      '100 g de queso crema',
+      '120 g de salmón ahumado en láminas',
+      '1 cda de alcaparras',
+      '1 cda de eneldo fresco picado',
+      '½ limón (jugo)',
+      '¼ cdta de pimienta negra',
+      '2 cdas de cebolla morada en tajadas finas',
+    ],
+    pasos: [
+      { num: '01', titulo: 'Calentar las arepas', desc: 'Tuesta las arepas en sartén o comal a fuego medio hasta que estén calientes y ligeramente doradas.' },
+      { num: '02', titulo: 'Preparar la base', desc: 'Mezcla el queso crema con el jugo de limón y la pimienta hasta obtener una crema suave.' },
+      { num: '03', titulo: 'Untar', desc: 'Unta cada arepa tibia con una capa generosa de la mezcla de queso crema.' },
+      { num: '04', titulo: 'Armar', desc: 'Coloca láminas de salmón ahumado sobre el queso crema y agrega cebolla morada y alcaparras.' },
+      { num: '05', titulo: 'Finalizar y servir', desc: 'Espolvorea el eneldo por encima y sirve de inmediato para disfrutar al máximo.' },
+    ],
+    nota: 'No calientes demasiado el salmón; agrégalo cuando la arepa esté tibia para conservar su textura.',
   },
   {
     img: '/imagen%206.webp',
@@ -41,9 +155,26 @@ const RECETAS = [
     tags: ['Fácil y rápido', 'Dulce'],
     titulo: 'Arepa Rellena de Queso con Mermelada de Mora',
     ingredientes: 'Arepa Rellena de Queso Dulce, mermelada de mora artesanal y panela rallada.',
+    porciones: '2 porciones',
+    tiempo: '8 min',
+    dificultad: 'Fácil',
+    emoji: '🫐',
+    ingredientesDetalle: [
+      '2 Arepas Rellenas de Queso Dulce (Promitie)',
+      '4 cdas de mermelada de mora artesanal',
+      '2 cdas de panela rallada',
+      '1 cda de mantequilla',
+    ],
+    pasos: [
+      { num: '01', titulo: 'Calentar las arepas', desc: 'En sartén a fuego medio, derrite la mantequilla y tuesta las arepas por ambos lados hasta que doren y el queso empiece a derretirse.' },
+      { num: '02', titulo: 'Servir con mermelada', desc: 'Coloca las arepas en un plato y cubre cada una con la mermelada de mora artesanal.' },
+      { num: '03', titulo: 'Finalizar', desc: 'Espolvorea la panela rallada por encima antes de servir para un toque crujiente y dulce irresistible.' },
+    ],
+    nota: 'Sírvelas recién hechas, mientras el queso del interior sigue caliente y derretido.',
   },
 ];
 ---
+
 <section id="recetario" class="recipes-section">
   <div class="section-container">
     <div class="section-header" data-reveal>
@@ -61,10 +192,13 @@ const RECETAS = [
     </div>
 
     <div class="recipes-grid">
-      {RECETAS.map(r => (
-        <article class="recipe-card" data-tags={r.tags.join(',').toLowerCase()} data-reveal>
+      {RECETAS.map((r, i) => (
+        <article class="recipe-card" data-tags={r.tags.join(',').toLowerCase()} data-reveal data-recipe-index={i} style="cursor:pointer;">
           <div class="recipe-img-wrapper">
             <img src={r.img} alt={r.alt} loading="lazy" />
+            <div class="recipe-card-overlay">
+              <span class="recipe-open-hint">Ver receta completa →</span>
+            </div>
           </div>
           <div class="recipe-info">
             <div class="recipe-tags">
@@ -79,7 +213,295 @@ const RECETAS = [
   </div>
 </section>
 
+<!-- Modal de receta -->
+<div id="recipe-modal" class="recipe-modal-backdrop" role="dialog" aria-modal="true" aria-label="Receta completa">
+  <div class="recipe-modal-box">
+    <button id="close-recipe-modal" class="recipe-modal-close" aria-label="Cerrar">✕</button>
+    <div class="recipe-modal-hero">
+      <img id="rmodal-img" src="" alt="" />
+      <div class="recipe-modal-hero-overlay">
+        <div class="recipe-modal-badge-row">
+          <span id="rmodal-emoji" class="rmodal-emoji"></span>
+          <div class="rmodal-meta-chips">
+            <span id="rmodal-tiempo" class="rmodal-chip">⏱ </span>
+            <span id="rmodal-porciones" class="rmodal-chip">🍽 </span>
+            <span id="rmodal-dificultad" class="rmodal-chip">⭐ </span>
+          </div>
+        </div>
+        <h2 id="rmodal-titulo" class="rmodal-titulo"></h2>
+        <div id="rmodal-tags" class="rmodal-tags-row"></div>
+      </div>
+    </div>
+    <div class="recipe-modal-body">
+      <div class="rmodal-cols">
+        <!-- Ingredientes -->
+        <div class="rmodal-ingredientes">
+          <h3 class="rmodal-section-title">
+            <span class="rmodal-section-icon">🛒</span> Ingredientes
+          </h3>
+          <ul id="rmodal-ingredientes-list" class="rmodal-ing-list"></ul>
+        </div>
+        <!-- Pasos -->
+        <div class="rmodal-pasos">
+          <h3 class="rmodal-section-title">
+            <span class="rmodal-section-icon">👨‍🍳</span> Preparación
+          </h3>
+          <div id="rmodal-pasos-list" class="rmodal-steps-list"></div>
+        </div>
+      </div>
+      <!-- Nota -->
+      <div id="rmodal-nota-wrap" class="rmodal-nota">
+        <span class="rmodal-nota-icon">💡</span>
+        <p id="rmodal-nota"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
+  /* ── Tarjeta: overlay al hover ── */
+  .recipe-card { position: relative; }
+  .recipe-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20,10,4,0.72) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 1.2rem;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .recipe-card:hover .recipe-card-overlay { opacity: 1; }
+  .recipe-open-hint {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Modal backdrop ── */
+  .recipe-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 5, 2, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .recipe-modal-backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── Modal box ── */
+  .recipe-modal-box {
+    background: #fffbf3;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 860px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #e8a400 #f5eedf;
+    position: relative;
+    transform: translateY(30px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+  }
+  .recipe-modal-backdrop.open .recipe-modal-box {
+    transform: translateY(0) scale(1);
+  }
+
+  /* ── Botón cerrar ── */
+  .recipe-modal-close {
+    position: sticky;
+    top: 1rem;
+    left: 100%;
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    margin-left: auto;
+    margin-right: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.2s;
+    transform: translateY(1rem);
+  }
+  .recipe-modal-close:hover {
+    background: #d62f2f;
+    color: #fff;
+    transform: translateY(1rem) scale(1.1);
+  }
+
+  /* ── Hero imagen ── */
+  .recipe-modal-hero {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+  .recipe-modal-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .recipe-modal-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,5,2,0.82) 0%, rgba(10,5,2,0.2) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem 2rem;
+    gap: 0.5rem;
+  }
+  .recipe-modal-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .rmodal-emoji { font-size: 2.2rem; line-height: 1; }
+  .rmodal-meta-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .rmodal-chip {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .rmodal-titulo {
+    color: #fff;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    line-height: 1.2;
+  }
+  .rmodal-tags-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .rmodal-tag {
+    background: var(--color-gold, #e8a400);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.15rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── Cuerpo modal ── */
+  .recipe-modal-body { padding: 2rem; }
+  .rmodal-cols {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .rmodal-section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-text, #2a1d17);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 2px solid var(--color-gold, #e8a400);
+    padding-bottom: 0.4rem;
+  }
+  .rmodal-section-icon { font-size: 1.1rem; }
+
+  /* Ingredientes */
+  .rmodal-ing-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .rmodal-ing-list li {
+    font-size: 0.88rem;
+    color: #4a3a30;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.4;
+  }
+  .rmodal-ing-list li::before {
+    content: '•';
+    color: var(--color-gold, #e8a400);
+    font-weight: 900;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  /* Pasos */
+  .rmodal-steps-list { display: flex; flex-direction: column; gap: 1rem; }
+  .rmodal-step {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+  .rmodal-step-num {
+    background: var(--color-red, #d62f2f);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.72rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  .rmodal-step-content {}
+  .rmodal-step-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--color-text, #2a1d17);
+    margin-bottom: 0.2rem;
+  }
+  .rmodal-step-desc {
+    font-size: 0.83rem;
+    color: #6b5340;
+    line-height: 1.5;
+  }
+
+  /* Nota */
+  .rmodal-nota {
+    background: linear-gradient(135deg, #fef9ec, #fdf1cc);
+    border: 1px solid rgba(232,164,0,0.3);
+    border-left: 4px solid var(--color-gold, #e8a400);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .rmodal-nota-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .rmodal-nota p { font-size: 0.85rem; color: #5a3e20; line-height: 1.5; margin: 0; font-style: italic; }
+
+  /* ── Filtros ── */
   .recipe-filters {
     display: flex;
     justify-content: center;
@@ -111,12 +533,8 @@ const RECETAS = [
       padding: 0.25rem 1rem 0.5rem 1rem;
       scrollbar-width: none;
     }
-    .recipe-filters::-webkit-scrollbar {
-      display: none;
-    }
-    .filter-btn {
-      flex-shrink: 0;
-    }
+    .recipe-filters::-webkit-scrollbar { display: none; }
+    .filter-btn { flex-shrink: 0; }
     .recipes-grid {
       display: flex !important;
       flex-wrap: nowrap !important;
@@ -124,37 +542,28 @@ const RECETAS = [
       scroll-snap-type: x mandatory;
       gap: 1.5rem;
       padding-bottom: 1.5rem;
-      scrollbar-width: none; /* Firefox */
-      margin: 0 -1rem; /* Negative margin to span full width on mobile if container has padding */
+      scrollbar-width: none;
+      margin: 0 -1rem;
       padding: 0 1rem 1.5rem 1rem;
     }
-    .recipes-grid::-webkit-scrollbar {
-      display: none; /* Safari/Chrome */
-    }
+    .recipes-grid::-webkit-scrollbar { display: none; }
     .recipe-card {
       width: 370px;
       max-width: 92vw;
       scroll-snap-align: center;
       flex-shrink: 0;
     }
-    
-    /* Ajustes para que no se vea tan sobredimensionado en celular */
-    .recipe-card :global(.recipe-info) {
-      padding: 1rem;
+    .rmodal-cols {
+      grid-template-columns: 1fr;
     }
-    .recipe-card :global(.recipe-title) {
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-    }
-    .recipe-card :global(.recipe-ingredients-preview) {
-      font-size: 0.8rem;
-      margin-bottom: 0;
-    }
+    .recipe-modal-hero { height: 220px; }
+    .recipe-modal-body { padding: 1.2rem; }
   }
 </style>
 
-<script>
+<script define:vars={{ RECETAS }}>
   document.addEventListener('DOMContentLoaded', () => {
+    // ── Filtros ──
     const filterBtns = document.querySelectorAll('.filter-btn');
     const recipeCards = document.querySelectorAll('.recipe-card');
 
@@ -162,22 +571,69 @@ const RECETAS = [
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const filter = btn.dataset.filter.toLowerCase();
-
         recipeCards.forEach(card => {
           if (filter === 'all') {
             card.style.display = 'block';
           } else {
             const tags = card.dataset.tags || '';
-            if (tags.includes(filter)) {
-              card.style.display = 'block';
-            } else {
-              card.style.display = 'none';
-            }
+            card.style.display = tags.includes(filter) ? 'block' : 'none';
           }
         });
       });
     });
+
+    // ── Modal ──
+    const modal = document.getElementById('recipe-modal');
+    const closeBtn = document.getElementById('close-recipe-modal');
+
+    const openModal = (idx) => {
+      const r = RECETAS[idx];
+      document.getElementById('rmodal-img').src = r.img;
+      document.getElementById('rmodal-img').alt = r.alt;
+      document.getElementById('rmodal-emoji').textContent = r.emoji;
+      document.getElementById('rmodal-titulo').textContent = r.titulo;
+      document.getElementById('rmodal-tiempo').textContent = '⏱ ' + r.tiempo;
+      document.getElementById('rmodal-porciones').textContent = '🍽 ' + r.porciones;
+      document.getElementById('rmodal-dificultad').textContent = '⭐ ' + r.dificultad;
+
+      // Tags
+      const tagsEl = document.getElementById('rmodal-tags');
+      tagsEl.innerHTML = r.tags.map(t => `<span class="rmodal-tag">${t}</span>`).join('');
+
+      // Ingredientes
+      const ingEl = document.getElementById('rmodal-ingredientes-list');
+      ingEl.innerHTML = r.ingredientesDetalle.map(i => `<li>${i}</li>`).join('');
+
+      // Pasos
+      const pasosEl = document.getElementById('rmodal-pasos-list');
+      pasosEl.innerHTML = r.pasos.map(p => `
+        <div class="rmodal-step">
+          <div class="rmodal-step-num">${p.num}</div>
+          <div class="rmodal-step-content">
+            <div class="rmodal-step-title">${p.titulo}</div>
+            <div class="rmodal-step-desc">${p.desc}</div>
+          </div>
+        </div>`).join('');
+
+      // Nota
+      document.getElementById('rmodal-nota').textContent = r.nota;
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    recipeCards.forEach(card => {
+      card.addEventListener('click', () => openModal(Number(card.dataset.recipeIndex)));
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   });
 </script>
