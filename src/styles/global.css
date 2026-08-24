@@ -353,10 +353,10 @@ section {
   gap: 2.5rem;
 }
 
-/* ── Tarjetas con fondo de madera (fondotar.webp) ── */
+/* ── Tarjetas con fondo de madera (fon.webp) ── */
 .essence-card {
   position: relative;
-  background-image: url('/fondotar.webp');
+  background-image: url('/fon.webp');
   background-size: cover;
   background-position: center;
   padding: 2.8rem 2.2rem 2.4rem;
