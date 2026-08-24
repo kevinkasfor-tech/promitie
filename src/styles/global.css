@@ -137,9 +137,10 @@ header {
 }
 
 header.scrolled {
-  background-color: rgba(255, 251, 243, 0.85);
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-warm);
+  background-color: rgba(255, 251, 243, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 2px 20px rgba(42, 29, 23, 0.08);
   padding: 0.6rem 2rem;
 }
 
