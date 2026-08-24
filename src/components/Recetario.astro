@@ -104,6 +104,19 @@ const RECETAS = [
   }
 
   @media (max-width: 768px) {
+    .recipe-filters {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding: 0.25rem 1rem 0.5rem 1rem;
+      scrollbar-width: none;
+    }
+    .recipe-filters::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-btn {
+      flex-shrink: 0;
+    }
     .recipes-grid {
       display: flex !important;
       flex-wrap: nowrap !important;
@@ -119,8 +132,8 @@ const RECETAS = [
       display: none; /* Safari/Chrome */
     }
     .recipe-card {
-      width: 330px;
-      max-width: 90vw;
+      width: 370px;
+      max-width: 92vw;
       scroll-snap-align: center;
       flex-shrink: 0;
     }
