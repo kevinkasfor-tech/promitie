@@ -477,17 +477,6 @@ function initChatbot() {
 
   btn.addEventListener('click', () => box.classList.toggle('open'));
 
-  const toggleOptions = (collapsed: boolean) => {
-    box.classList.toggle('options-collapsed', collapsed);
-    optionsContainer.classList.toggle('collapsed', collapsed);
-    optionsToggle.setAttribute('aria-expanded', String(!collapsed));
-    messages.scrollTop = messages.scrollHeight;
-  };
-
-  optionsToggle.addEventListener('click', () => {
-    toggleOptions(!box.classList.contains('options-collapsed'));
-  });
-
   const pushMsg = (text: string, who: 'bot' | 'user') => {
     const el = document.createElement('div');
     el.className = `chat-msg ${who}`;
@@ -496,6 +485,37 @@ function initChatbot() {
     messages.scrollTop = messages.scrollHeight;
     return el;
   };
+
+  const procesarPregunta = (texto: string) => {
+    const min = texto.toLowerCase();
+    
+    setTimeout(() => {
+      if (min.includes('envio') || min.includes('despacho') || min.includes('domicilio')) {
+        pushMsg('Realizamos despachos a todo Bogotá, entregando el producto fresco y empacado al vacío. Para coordinar tu envío, escríbenos a nuestro WhatsApp.', 'bot');
+      } else if (min.includes('precio') || min.includes('costo') || min.includes('cuanto')) {
+        pushMsg('Nuestros precios varían según la arepa y si eres consumidor hogareño o negocio (B2B). Puedes revisar nuestro Catálogo en la página y añadir productos al carrito para ver el costo total.', 'bot');
+      } else if (min.includes('contacto') || min.includes('telefono') || min.includes('whatsapp')) {
+        pushMsg(`Puedes contactarnos directamente en nuestro WhatsApp (+57 ${WHATSAPP_NUMERO}) o usar el formulario de contacto más abajo en la página.`, 'bot');
+      } else if (min.includes('ubicacion') || min.includes('donde') || min.includes('bogota')) {
+        pushMsg('Estamos ubicados en Bogotá, Colombia. Operamos principalmente por encargo y despachos a domicilio.', 'bot');
+      } else {
+        pushMsg('¡Qué interesante! 😊 Como soy un asistente virtual básico, te sugiero contactarnos directamente por WhatsApp para poder responderte de forma más precisa.', 'bot');
+      }
+    }, 600);
+  };
+
+  const chatForm = $('#chatbot-form') as HTMLFormElement;
+  if (chatForm) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = $('#chatbot-input') as HTMLInputElement;
+      const texto = input.value.trim();
+      if (!texto) return;
+      pushMsg(texto, 'user');
+      input.value = '';
+      procesarPregunta(texto);
+    });
+  }
 
   const pushRecomendacion = (rec: { intro: string; ids: string[]; cierre: string }) => {
     const seleccion: Record<string, number> = {};
@@ -590,7 +610,6 @@ function initChatbot() {
       const rec = RECOMENDACIONES[key];
       if (!rec) return;
       pushMsg(opt.innerText, 'user');
-      toggleOptions(true);
       setTimeout(() => pushRecomendacion(rec), 700);
     });
   });

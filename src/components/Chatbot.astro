@@ -22,16 +22,19 @@
         <small style="opacity: 0.9; font-weight: 600;">(Pulsa aquí abajo 👇)</small>
       </div>
     </div>
-    <div class="chatbot-options" id="chatbot-options">
-      <button class="chat-opt-btn" data-option="desayuno">🌅 Desayuno familiar</button>
-      <button class="chat-opt-btn" data-option="merienda">🧀 Merienda o antojo</button>
-      <button class="chat-opt-btn" data-option="asado">🔥 Asado / parranda</button>
-      <button class="chat-opt-btn" data-option="fit">💪 Vida saludable (Fit)</button>
-      <button class="chat-opt-btn" data-option="evento">🎉 Reunión o evento</button>
-      <button class="chat-opt-btn" data-option="negocio">🏪 Soy un negocio (B2B)</button>
+    <div class="chatbot-input-area">
+      <div class="chatbot-options horizontal-scroll" id="chatbot-options">
+        <button class="chat-opt-btn" data-option="desayuno">🌅 Desayuno</button>
+        <button class="chat-opt-btn" data-option="merienda">🧀 Merienda</button>
+        <button class="chat-opt-btn" data-option="asado">🔥 Asado</button>
+        <button class="chat-opt-btn" data-option="fit">💪 Fit</button>
+        <button class="chat-opt-btn" data-option="evento">🎉 Evento</button>
+        <button class="chat-opt-btn" data-option="negocio">🏪 Negocio</button>
+      </div>
+      <form class="chatbot-form" id="chatbot-form">
+        <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta aquí..." autocomplete="off" />
+        <button type="submit" aria-label="Enviar mensaje"><i class="fa-solid fa-paper-plane"></i></button>
+      </form>
     </div>
-    <button type="button" class="chatbot-options-toggle" id="chatbot-options-toggle" aria-expanded="true" aria-controls="chatbot-options" title="Mostrar u ocultar variedades">
-      <i class="fa-solid fa-chevron-down chatbot-options-chevron"></i>
-    </button>
   </div>
 </div>
