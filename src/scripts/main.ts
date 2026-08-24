@@ -518,6 +518,8 @@ function initChatbot() {
   }
 
   const pushRecomendacion = (rec: { intro: string; ids: string[]; cierre: string }) => {
+    // ids activos (se pueden eliminar individualmente)
+    const activeIds = [...rec.ids];
     const seleccion: Record<string, number> = {};
     rec.ids.forEach(id => { seleccion[id] = 1; });
 
@@ -525,23 +527,53 @@ function initChatbot() {
 
     const wrap = document.createElement('div');
     wrap.className = 'chat-products';
-    rec.ids.forEach(id => {
-      const p = PRODUCTOS.find(x => x.id === id)!;
-      const row = document.createElement('div');
-      row.className = 'chat-product-row';
-      row.innerHTML = `
-        <img src="${imagenDe(p)}" alt="${p.nombre}">
-        <div class="chat-product-info">
-          <span class="chat-product-name">${p.nombre}</span>
-          <span class="chat-product-price">${COP(p.precio)}</span>
-        </div>
-        <div class="chat-qty-selector">
-          <button type="button" class="chat-qty-btn minus" data-id="${id}" aria-label="Disminuir unidades">−</button>
-          <span class="chat-qty-val" data-id="${id}">1</span>
-          <button type="button" class="chat-qty-btn plus" data-id="${id}" aria-label="Aumentar unidades">+</button>
-        </div>`;
-      wrap.appendChild(row);
-    });
+
+    const renderRows = () => {
+      wrap.innerHTML = '';
+      activeIds.forEach(id => {
+        const p = PRODUCTOS.find(x => x.id === id)!;
+        const row = document.createElement('div');
+        row.className = 'chat-product-row';
+        row.dataset.rowId = id;
+        row.innerHTML = `
+          <img src="${imagenDe(p)}" alt="${p.nombre}">
+          <div class="chat-product-info">
+            <span class="chat-product-name">${p.nombre}</span>
+            <span class="chat-product-price">${COP(p.precio)}</span>
+          </div>
+          <div class="chat-qty-selector">
+            <button type="button" class="chat-qty-btn minus" data-id="${id}" aria-label="Disminuir unidades">−</button>
+            <span class="chat-qty-val" data-id="${id}">${seleccion[id] ?? 1}</span>
+            <button type="button" class="chat-qty-btn plus" data-id="${id}" aria-label="Aumentar unidades">+</button>
+          </div>
+          <button type="button" class="chat-remove-btn" data-id="${id}" aria-label="Eliminar arepa" title="Eliminar">✕</button>`;
+        wrap.appendChild(row);
+      });
+
+      // Botones + y −
+      wrap.querySelectorAll<HTMLButtonElement>('.chat-qty-btn').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.dataset.id!;
+          const next = Math.max(1, seleccion[id] + (b.classList.contains('plus') ? 1 : -1));
+          seleccion[id] = next;
+          wrap.querySelector<HTMLElement>(`.chat-qty-val[data-id="${id}"]`)!.innerText = String(next);
+          updateTotal();
+        });
+      });
+
+      // Botón eliminar
+      wrap.querySelectorAll<HTMLButtonElement>('.chat-remove-btn').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.dataset.id!;
+          const idx = activeIds.indexOf(id);
+          if (idx !== -1) activeIds.splice(idx, 1);
+          renderRows();
+          updateTotal();
+        });
+      });
+    };
+
+    renderRows();
     messages.appendChild(wrap);
 
     const form = document.createElement('div');
@@ -557,22 +589,12 @@ function initChatbot() {
 
     const updateTotal = () => {
       let total = 0;
-      rec.ids.forEach(id => {
+      activeIds.forEach(id => {
         const p = PRODUCTOS.find(x => x.id === id)!;
-        total += p.precio * seleccion[id];
+        if (seleccion[id]) total += p.precio * seleccion[id];
       });
       form.querySelector('.chat-order-total-value')!.textContent = COP(total);
     };
-
-    wrap.querySelectorAll<HTMLButtonElement>('.chat-qty-btn').forEach(b => {
-      b.addEventListener('click', () => {
-        const id = b.dataset.id!;
-        const next = Math.max(1, seleccion[id] + (b.classList.contains('plus') ? 1 : -1));
-        seleccion[id] = next;
-        wrap.querySelector<HTMLElement>(`.chat-qty-val[data-id="${id}"]`)!.innerText = String(next);
-        updateTotal();
-      });
-    });
 
     form.querySelector<HTMLButtonElement>('#chat-order-submit')!.addEventListener('click', () => {
       const nameInput = form.querySelector<HTMLInputElement>('#chat-order-name')!;
@@ -587,9 +609,9 @@ function initChatbot() {
       }
       let msg = '¡Hola Promitie! Quiero completar mi pedido:\n\n';
       let total = 0;
-      rec.ids.forEach(id => {
+      activeIds.forEach(id => {
         const p = PRODUCTOS.find(x => x.id === id)!;
-        const q = seleccion[id];
+        const q = seleccion[id] ?? 1;
         msg += `• ${p.nombre} x${q} pqts - ${COP(p.precio * q)}\n`;
         total += p.precio * q;
       });
