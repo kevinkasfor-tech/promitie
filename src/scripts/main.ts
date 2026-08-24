@@ -212,7 +212,7 @@ function renderCatalog() {
   // Iniciar carruseles automáticos
   grid.querySelectorAll<HTMLElement>('.product-card').forEach(card => {
     const prodId = card.dataset.prodId!;
-    initCarousel(card, prodId);
+    // initCarousel(card, prodId); // Desactivado
   });
 
   activeMode === 'b2c' ? bindB2CEvents() : bindB2BEvents();

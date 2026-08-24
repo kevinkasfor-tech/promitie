@@ -15,6 +15,7 @@ export interface Producto {
   preparacion: string;
   beneficios: string[];
   ocasiones: string[]; // usado por el chatbot recomendador
+  img: string;
 }
 
 // Pool de imágenes compartido — rotan en todos los productos del carrusel
@@ -51,6 +52,7 @@ const BASE: ProductoBase[] = [
     caja: '40 paquetes', vidaUtil: '15 días en refrigeración', alergenos: 'Ninguno',
     preparacion: 'Asar a la plancha por 3-5 minutos de cada lado.',
     ocasiones: ['desayuno', 'asado', 'negocio'],
+    img: '/foto1.webp',
   },
   {
     id: 'paisa-taco',
@@ -62,6 +64,7 @@ const BASE: ProductoBase[] = [
     caja: '30 paquetes', vidaUtil: '15 días en refrigeración', alergenos: 'Ninguno',
     preparacion: 'Plancha o tostadora.',
     ocasiones: ['desayuno', 'negocio'],
+    img: '/foto2.webp',
   },
   {
     id: 'paisa-bola',
@@ -73,6 +76,7 @@ const BASE: ProductoBase[] = [
     caja: '15 paquetes', vidaUtil: '12 días en refrigeración', alergenos: 'Ninguno',
     preparacion: 'Abrir a la mitad, asar y rellenar al gusto.',
     ocasiones: ['desayuno', 'asado', 'evento'],
+    img: '/foto3.webp',
   },
   {
     id: 'peto-multigranos',
@@ -84,6 +88,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '15 días', alergenos: 'Puede contener trazas de gluten',
     preparacion: 'Plancha con un toque de aceite de oliva.',
     ocasiones: ['fit', 'desayuno'],
+    img: '/foto4.webp',
   },
   {
     id: 'peto-chia',
@@ -95,6 +100,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '15 días', alergenos: 'Ninguno',
     preparacion: 'Plancha 4 minutos por lado.',
     ocasiones: ['fit', 'desayuno'],
+    img: '/foto5.webp',
   },
   {
     id: 'peto-ajonjoli',
@@ -106,6 +112,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '15 días', alergenos: 'Ajonjolí',
     preparacion: 'Dorar sin aceite a fuego medio.',
     ocasiones: ['fit', 'evento'],
+    img: '/foto6.jpg',
   },
   {
     id: 'peto-quinoa',
@@ -117,6 +124,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '15 días', alergenos: 'Ninguno',
     preparacion: 'Asar a fuego medio-alto.',
     ocasiones: ['fit', 'desayuno'],
+    img: '/foto7.webp',
   },
   {
     id: 'queso-dulce',
@@ -128,6 +136,7 @@ const BASE: ProductoBase[] = [
     caja: '20 paquetes', vidaUtil: '10 días en refrigeración', alergenos: 'Lácteos',
     preparacion: 'Asar lentamente a fuego bajo para derretir el queso interior.',
     ocasiones: ['merienda', 'evento'],
+    img: '/foto8.webp',
   },
   {
     id: 'queso-pequena',
@@ -139,6 +148,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '10 días en refrigeración', alergenos: 'Lácteos',
     preparacion: 'Plancha o freidora de aire.',
     ocasiones: ['evento', 'merienda', 'negocio'],
+    img: '/foto9.webp',
   },
   {
     id: 'amasadas-queso',
@@ -150,6 +160,7 @@ const BASE: ProductoBase[] = [
     caja: '20 paquetes', vidaUtil: '12 días en refrigeración', alergenos: 'Lácteos',
     preparacion: 'Asar a fuego medio con un poco de mantequilla.',
     ocasiones: ['desayuno', 'merienda'],
+    img: '/foto10.webp',
   },
   {
     id: 'rellenas-queso',
@@ -161,6 +172,7 @@ const BASE: ProductoBase[] = [
     caja: '20 paquetes', vidaUtil: '10 días en refrigeración', alergenos: 'Lácteos',
     preparacion: 'Asar a fuego lento tapadas para óptimo derretido.',
     ocasiones: ['merienda', 'evento', 'negocio'],
+    img: '/foto11.webp',
   },
   {
     id: 'maiz-pelado',
@@ -172,6 +184,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '12 días', alergenos: 'Ninguno',
     preparacion: 'Plancha o brasa.',
     ocasiones: ['asado', 'desayuno'],
+    img: '/foto12.webp',
   },
   {
     id: 'pelado-quinoa',
@@ -183,6 +196,7 @@ const BASE: ProductoBase[] = [
     caja: '25 paquetes', vidaUtil: '12 días', alergenos: 'Ajonjolí',
     preparacion: 'Dorar a la plancha a fuego medio.',
     ocasiones: ['fit', 'asado'],
+    img: '/foto13.webp',
   },
   {
     id: 'pelado-queso',
@@ -199,13 +213,14 @@ const BASE: ProductoBase[] = [
       'Queso campesino fresco que se funde al asarla',
     ],
     ocasiones: ['desayuno', 'merienda'],
+    img: '/foto1.webp',
   },
 ];
 
 export const PRODUCTOS: Producto[] = BASE.map(p => ({ ...p, beneficios: p.beneficios ?? BENEFICIOS[p.categoria] }));
 
 // imagenDe mantiene compatibilidad con carrito, modal y chatbot
-export const imagenDe = (_p: Pick<Producto, 'categoria'>) => IMAGE_POOL[0];
+export const imagenDe = (p: Pick<Producto, 'img'>) => p.img;
 
 export const COP = (n: number) => `$${n.toLocaleString('es-CO')} Cop`;
 
