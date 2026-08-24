@@ -131,28 +131,14 @@ function renderCatalog() {
     card.className = 'product-card';
     card.dataset.prodId = prod.id;
 
-    // Mezcla aleatoria del pool de imágenes para este producto
-    const shuffled = [...IMAGE_POOL].sort(() => Math.random() - 0.5);
-    const slides = shuffled.slice(0, Math.min(5, shuffled.length));
+    // Imagen única del producto
+    const slidesHTML = `
+      <div class="pcarousel-slide active">
+        <img src="${imagenDe(prod)}" alt="${prod.nombre}" loading="eager">
+        <div class="pcarousel-badge">📦 Paquete x ${prod.unidades} uds</div>
+      </div>`;
+    const dotsHTML = '';
 
-    // Info que rota con las imágenes (badge sobre la imagen)
-    const infoBadges = [
-      `📦 Paquete x ${prod.unidades} uds`,
-      `✨ ${prod.beneficios[0]}`,
-      prod.beneficios[1] ? `🌾 ${prod.beneficios[1]}` : `📍 ${prod.origen}`,
-      `⏳ ${prod.vidaUtil}`,
-      `🍳 ${prod.preparacion}`,
-    ];
-
-    const slidesHTML = slides.map((src, i) => `
-      <div class="pcarousel-slide${i === 0 ? ' active' : ''}">
-        <img src="${src}" alt="${prod.nombre}" loading="${i === 0 ? 'eager' : 'lazy'}">
-        <div class="pcarousel-badge">${infoBadges[i % infoBadges.length]}</div>
-      </div>`).join('');
-
-    const dotsHTML = slides.map((_, i) =>
-      `<span class="pcarousel-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></span>`
-    ).join('');
 
     if (activeMode === 'b2c') {
       card.innerHTML = `
