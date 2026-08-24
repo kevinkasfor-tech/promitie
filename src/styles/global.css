@@ -708,11 +708,11 @@ section {
 }
 
 .product-card {
-  background-color: var(--color-bg);
+  background-color: #f0e8d4;
   border-radius: var(--radius-card);
   overflow: hidden;
   box-shadow: var(--shadow-warm);
-  border: 1px solid rgba(42, 29, 23, 0.05);
+  border: 1px solid rgba(42, 29, 23, 0.1);
   display: flex;
   flex-direction: column;
   transition: var(--transition-smooth);
@@ -725,7 +725,7 @@ section {
 
 .prod-img-wrapper {
   position: relative;
-  aspect-ratio: 1.2;
+  aspect-ratio: 1.6;
   background-color: var(--color-bg-sec);
   overflow: hidden;
 }
