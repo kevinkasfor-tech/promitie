@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initChatbot();
   initContactForm();
   initMobileNav();
+  initAutoCarousels();
 
   $('#close-modal-btn')?.addEventListener('click', () => $('#product-modal').classList.remove('open'));
   $('#product-modal')?.addEventListener('click', e => {
@@ -619,4 +620,32 @@ function initContactForm() {
       select.dispatchEvent(new Event('change'));
     }, 3000);
   });
+}
+
+/* ---------- Carruseles Móviles (Auto-scroll) ---------- */
+function initAutoCarousels() {
+  const isMobile = () => window.innerWidth <= 768;
+  
+  const autoScroll = (selector: string, cardSelector: string) => {
+    const container = $(selector);
+    if (!container) return;
+
+    setInterval(() => {
+      if (!isMobile()) return;
+      const firstCard = container.querySelector(cardSelector) as HTMLElement;
+      if (!firstCard) return;
+
+      const cardWidth = firstCard.offsetWidth + parseFloat(getComputedStyle(container).gap || '0');
+      
+      // Si llegamos al final, volver al principio
+      if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }, 4000);
+  };
+
+  autoScroll('.products-grid', '.product-card');
+  autoScroll('.recipes-grid', '.recipe-card');
 }

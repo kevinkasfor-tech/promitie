@@ -2167,9 +2167,9 @@ header.scrolled .hamburger-btn span {
   }
 
   .product-card {
-    min-width: 85vw;
-    max-width: 85vw;
-    width: 85vw;
+    min-width: 75vw;
+    max-width: 75vw;
+    width: 75vw;
     -ms-flex-negative: 0;
     flex-shrink: 0;
     scroll-snap-align: center;
