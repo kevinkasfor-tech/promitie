@@ -177,18 +177,20 @@ const RECETAS = [
 
 <section id="recetario" class="recipes-section">
   <div class="section-container">
-    <div class="section-header" data-reveal>
-      <span class="caption">INSPIRACIÓN EN HOGAR</span>
-      <h2>Recetario Promitie</h2>
-      <p>Aprende a preparar platos deliciosos usando nuestras arepas como base.</p>
-    </div>
+    <div class="recipes-header-bg">
+      <div class="section-header" data-reveal>
+        <span class="caption">INSPIRACIÓN EN HOGAR</span>
+        <h2>Recetario Promitie</h2>
+        <p>Aprende a preparar platos deliciosos usando nuestras arepas como base.</p>
+      </div>
 
-    <div class="recipe-filters" data-reveal>
+      <div class="recipe-filters" data-reveal>
       <button class="filter-btn active" data-filter="all">Todas</button>
       <button class="filter-btn" data-filter="desayuno">Desayuno</button>
       <button class="filter-btn" data-filter="almuerzo">Almuerzo</button>
       <button class="filter-btn" data-filter="cena">Cena</button>
       <button class="filter-btn" data-filter="fácil y rápido">Fácil y rápido</button>
+    </div>
     </div>
 
     <div class="recipes-grid">
@@ -516,9 +518,70 @@ const RECETAS = [
   .rmodal-nota-icon { font-size: 1.1rem; flex-shrink: 0; }
   .rmodal-nota p { font-size: 0.85rem; color: #5a3e20; line-height: 1.5; margin: 0; font-style: italic; }
 
+  .recipes-header-bg {
+    position: relative;
+    background-image: url('/fondo rece.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: var(--radius-xl, 20px);
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+  }
+  .recipes-header-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10,5,2,0.4) 0%, rgba(10,5,2,0.15) 60%, transparent 100%);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .recipes-header-bg .section-header,
+  .recipes-header-bg .recipe-filters {
+    position: relative;
+    z-index: 1;
+  }
+  .recipes-header-bg .section-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .recipes-header-bg .caption {
+    color: var(--color-gold, #e8a400);
+  }
+  .recipes-header-bg h2 {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .recipes-header-bg p {
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .recipes-header-bg .recipe-filters {
+    justify-content: center;
+  }
+  .recipes-header-bg .filter-btn {
+    border-color: rgba(255,255,255,0.5);
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+  }
+  .recipes-header-bg .filter-btn:hover,
+  .recipes-header-bg .filter-btn.active {
+    background: var(--color-gold, #e8a400);
+    border-color: var(--color-gold, #e8a400);
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .recipes-header-bg {
+      border-radius: 0;
+      padding: 2rem 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
   /* ── Filtros ── */
   .recipe-filters {
-    display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.75rem;
