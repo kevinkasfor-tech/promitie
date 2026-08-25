@@ -610,10 +610,13 @@ const RECETAS = [
       padding: 0.25rem 1rem 0.75rem 1rem;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      gap: 0.5rem;
     }
     .recipe-filters::-webkit-scrollbar { display: none; }
     .filter-btn {
       flex-shrink: 0;
+      scroll-snap-align: start;
       padding: 0.45rem 1rem;
     }
     .recipes-grid {
