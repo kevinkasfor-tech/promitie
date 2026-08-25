@@ -2024,6 +2024,13 @@ header.scrolled .hamburger-btn span {
   }
 }
 
+/* Fuerza las 3 columnas de reseñas en desktop (evita cortes) */
+@media (min-width: 993px) {
+  .reviews-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
 /* ==========================================
    RESPONSIVE — Mobile (≤768px)
    ========================================== */
