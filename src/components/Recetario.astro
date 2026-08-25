@@ -176,8 +176,8 @@ const RECETAS = [
 ---
 
 <section id="recetario" class="recipes-section">
-  <div class="section-container">
-    <div class="recipes-header-bg">
+  <div class="recipes-header-bg">
+    <div class="section-container">
       <div class="section-header" data-reveal>
         <span class="caption">INSPIRACIÓN EN HOGAR</span>
         <h2>Recetario Promitie</h2>
@@ -185,14 +185,16 @@ const RECETAS = [
       </div>
 
       <div class="recipe-filters" data-reveal>
-      <button class="filter-btn active" data-filter="all">Todas</button>
-      <button class="filter-btn" data-filter="desayuno">Desayuno</button>
-      <button class="filter-btn" data-filter="almuerzo">Almuerzo</button>
-      <button class="filter-btn" data-filter="cena">Cena</button>
-      <button class="filter-btn" data-filter="fácil y rápido">Fácil y rápido</button>
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="desayuno">Desayuno</button>
+        <button class="filter-btn" data-filter="almuerzo">Almuerzo</button>
+        <button class="filter-btn" data-filter="cena">Cena</button>
+        <button class="filter-btn" data-filter="fácil y rápido">Fácil y rápido</button>
+      </div>
     </div>
-    </div>
+  </div>
 
+  <div class="section-container">
     <div class="recipes-grid">
       {RECETAS.map((r, i) => (
         <article class="recipe-card" data-tags={r.tags.join(',').toLowerCase()} data-reveal data-recipe-index={i} style="cursor:pointer;">
@@ -524,8 +526,7 @@ const RECETAS = [
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: var(--radius-xl, 20px);
-    padding: 3rem 2rem;
+    padding: 3rem 0;
     margin-bottom: 2rem;
   }
   .recipes-header-bg::before {
@@ -533,7 +534,6 @@ const RECETAS = [
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, rgba(10,5,2,0.4) 0%, rgba(10,5,2,0.15) 60%, transparent 100%);
-    border-radius: inherit;
     pointer-events: none;
   }
   .recipes-header-bg .section-header,
