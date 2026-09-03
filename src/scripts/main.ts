@@ -197,54 +197,12 @@ function renderCatalog() {
   // Iniciar carruseles automáticos
   grid.querySelectorAll<HTMLElement>('.product-card').forEach(card => {
     const prodId = card.dataset.prodId!;
-    // initCarousel(card, prodId); // Desactivado
+    // Carrusel automático desactivado
   });
 
   activeMode === 'b2c' ? bindB2CEvents() : bindB2BEvents();
 }
 
-function initCarousel(card: HTMLElement, prodId: string) {
-  const track = card.querySelector<HTMLElement>('.pcarousel-track');
-  const dots = card.querySelectorAll<HTMLElement>('.pcarousel-dot');
-  if (!track) return;
-
-  const slides = track.querySelectorAll<HTMLElement>('.pcarousel-slide');
-  const total = slides.length;
-  if (total <= 1) return;
-
-  let current = 0;
-
-  const goTo = (idx: number) => {
-    slides[current].classList.remove('active');
-    dots[current]?.classList.remove('active');
-    current = (idx + total) % total;
-    slides[current].classList.add('active');
-    dots[current]?.classList.add('active');
-  };
-
-  // Click en dots para navegación manual
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', e => {
-      e.stopPropagation();
-      goTo(i);
-      // Reiniciar el timer al navegar manualmente
-      clearInterval(carouselIntervals.get(prodId));
-      const newId = setInterval(() => goTo(current + 1), 2800);
-      carouselIntervals.set(prodId, newId);
-    });
-  });
-
-  // Auto-rotación aleatoria: elige un orden aleatorio de slides
-  const order = Array.from({ length: total }, (_, i) => i).sort(() => Math.random() - 0.5);
-  let orderIdx = 0;
-
-  const intervalId = setInterval(() => {
-    orderIdx = (orderIdx + 1) % order.length;
-    goTo(order[orderIdx]);
-  }, 2600 + Math.random() * 800); // intervalo con variación aleatoria
-
-  carouselIntervals.set(prodId, intervalId);
-}
 
 function bindB2CEvents() {
   const grid = $('#products-grid');
