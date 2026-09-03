@@ -1842,6 +1842,9 @@ footer {
   gap: 1rem;
   transition: var(--transition-smooth);
   position: relative;
+  /* Garantiza visibilidad si GSAP no llega a animar */
+  opacity: 1;
+  will-change: opacity, transform;
 }
 
 .review-card:hover {

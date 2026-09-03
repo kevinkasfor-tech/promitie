@@ -94,14 +94,35 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- Reseñas: entrada escalonada ---------- */
-  gsap.from('.review-card', {
-    scrollTrigger: { trigger: '.reviews-grid', start: 'top 85%' },
-    opacity: 0,
-    y: 40,
-    duration: 0.7,
-    stagger: 0.12,
-    ease: 'power2.out',
-  });
+  const reviewCards = document.querySelectorAll<HTMLElement>('.review-card');
+  if (reviewCards.length) {
+    gsap.fromTo(
+      reviewCards,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power2.out',
+        clearProps: 'opacity,transform',
+        scrollTrigger: {
+          trigger: '.reviews-grid',
+          start: 'top 88%',
+          onEnter: () => {},
+        },
+      }
+    );
+    // Fallback: si tras 3s las tarjetas siguen sin verse, fuérzalas visibles
+    setTimeout(() => {
+      reviewCards.forEach(c => {
+        if (parseFloat(getComputedStyle(c).opacity) < 0.5) {
+          c.style.opacity = '1';
+          c.style.transform = 'none';
+        }
+      });
+    }, 3000);
+  }
 
   /* ---------- Micro-parallax en tarjetas de esencia (solo desktop) ---------- */
   if (isDesktop) {
