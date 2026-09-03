@@ -146,7 +146,6 @@ function renderCatalog() {
         <div class="pcarousel-wrapper open-modal-trigger" data-id="${prod.id}" title="Ver detalles">
           <div class="pcarousel-track">${slidesHTML}</div>
           <div class="pcarousel-dots">${dotsHTML}</div>
-          <span class="prod-region-badge pcarousel-region">${prod.origen}</span>
         </div>
         <div class="prod-info">
           <h3 class="prod-title">${prod.nombre}</h3>
@@ -169,7 +168,6 @@ function renderCatalog() {
         <div class="pcarousel-wrapper open-modal-trigger" data-id="${prod.id}" title="Ver detalles">
           <div class="pcarousel-track">${slidesHTML}</div>
           <div class="pcarousel-dots">${dotsHTML}</div>
-          <span class="prod-region-badge pcarousel-region" style="background-color: var(--color-blue);">${prod.sku}</span>
         </div>
         <div class="prod-info">
           <h3 class="prod-title" style="color: var(--color-blue);">${prod.nombre} B2B</h3>
